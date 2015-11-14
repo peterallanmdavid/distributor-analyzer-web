@@ -13,25 +13,37 @@ var Sources = React.createClass({
 	propTypes:{
 		sourceTypes: React.PropTypes.object,
 		distAction: React.PropTypes.object,
-		sources: React.PropTypes.array
+		sources: React.PropTypes.array,
+		removeSource: React.PropTypes.func
 	},
 	_toggleSourceForm:function(){
 		var currState = this.state.isAdding;
 		this.setState({isAdding:!currState});
+	},
+	_closeForm:function(){
+		this.setState({isAdding:false});
+	},
+	_showForm:function(){
+		this.setState({isAdding:true});
 	},
 	render:function(){
 		var sources = this.props.sources;
 		var addSourceClass = classnames({"hidden":!this.state.isAdding})
 		return(
 			<div>
-				<SourceList sources = {sources}/>
-				<div onClick = {this._toggleSourceForm}><i className="fa fa-plus-circle"></i>Add Source</div>
-				<div className = {addSourceClass}>
-				<SourceForm
-					sourceTypes = {this.props.sourceTypes}
-					distAction = {this.props.distAction}
-					addSource = {this.props.addSource}
+				<SourceList 
+					sources = {sources} 
+					removeSource = {this.props.removeSource}
+					showForm = {this._showForm}
+					isAdding = {this.state.isAdding}
 				/>
+				<div className = {addSourceClass}>
+					<SourceForm
+						sourceTypes = {this.props.sourceTypes}
+						distAction = {this.props.distAction}
+						addSource = {this.props.addSource}
+						closeForm = {this._closeForm}
+					/>
 				</div>
 			</div>
 		);

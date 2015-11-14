@@ -18,8 +18,8 @@ var Presentation = React.createClass({
 			<tr className = "table-row">
 				    <td className = "table-col">{d.name}</td>
 				    <td className = "table-col">{d.location}</td> 
-			        <td className = "table-col">{d.sources[0].typeName}</td> 
-			        <td className = "table-col">{d.clients[0].name}</td> 
+			        <td className = "table-col">{d.sources.length}</td> 
+			        <td className = "table-col">{d.clients.length}</td> 
 				    <td className = "table-col">{d.completedInvestigation}</td>
 				    <td className = "table-col">{d.currentIntelligence}</td>
 				    <td className = "table-col">{d.pendingLeads}</td>
@@ -30,7 +30,7 @@ var Presentation = React.createClass({
 		return(
 			<div className = "presentation-container">
 				<table>
-				  <th className = "table-row" colSpan = {7}>Distributor List</th>
+				  <th className = "table-row" colSpan = {8}>Distributor List</th>
 				  <tr className = "table-row table-header">
 				    <td className = "table-col">Main Distributor</td>
 				    <td className = "table-col">Location</td> 

@@ -27,21 +27,22 @@ var SourcesForm = React.createClass({
 
 	render:function(){
 		return(
-			<div className = "client-form">
+			<div className = "client-form card-white">
 				<div className = "input-fields">
-					<label> Name </label>
+					<label> Name: </label>
 					<input value= {this.state.name} onChange ={this._changeQuantity.bind(null, "name")}/>
 				</div>
 				<div className = "input-fields">
-					<label> Owner </label>
+					<label> Owner: </label>
 					<input value= {this.state.owner} onChange ={this._changeQuantity.bind(null, "owner")}/>
 				</div>
 				<div className = "input-fields">
-					<label> Location </label>
+					<label> Location: </label>
 					<input value= {this.state.location} onChange ={this._changeQuantity.bind(null, "location")}/>
 				</div>
-				<div>
-					<div className = "generic-button right" onClick = {this._saveSource}>SAVE</div>
+				<div className = "input-field action-buttons"> 
+					<i onClick = {this._saveSource} className="fa fa-check-circle"></i>
+					<i onClick = {this.props.closeForm} className="fa fa-times-circle"></i>
 				</div>
 			</div>
 		);

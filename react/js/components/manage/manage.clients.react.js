@@ -19,17 +19,27 @@ var Clients = React.createClass({
 		var currState = this.state.isAdding;
 		this.setState({isAdding:!currState});
 	},
+	_closeForm:function(){
+		this.setState({isAdding:false});
+	},
+	_showForm:function(){
+		this.setState({isAdding:true});
+	},
 	render:function(){
 		var clients = this.props.clients;
 		var addClientsClass = classnames({"hidden":!this.state.isAdding})
 		return(
 			<div>
-				<ClientsList clients = {clients}/>
-				<div onClick = {this._toggleForm}><i className="fa fa-plus-circle"></i>Add Clients</div>
+				<ClientsList 
+					clients = {clients}
+					showForm = {this._showForm}
+					isAdding = {this.state.isAdding}
+				/>
 				<div className = {addClientsClass}>
 				<ClientsForm
 					distAction = {this.props.distAction}
 					addClient = {this.props.addClient}
+					closeForm = {this._closeForm}
 				/>
 				</div>
 			</div>
