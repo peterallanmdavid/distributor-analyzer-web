@@ -5,7 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/home.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>  
+    <link rel='stylesheet' href='/stylesheets/font-awesome.min.css' />
+    <link rel='stylesheet' href='/stylesheets/common.css' />
   </head>
   <body>    
     <div id="home"> </div>

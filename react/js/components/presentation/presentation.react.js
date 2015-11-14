@@ -5,54 +5,45 @@ var React = require('react')
 	, Router = require('react-router')
     , Link = Router.Link;
 
-	;
-
-
-
 var Presentation = React.createClass({
-	mixins: [Reflux.ListenerMixin],
-	getInitialState: function(){
-		return({
-			presentationData: DistStore.getPresentationData()
-		})
-	},
-	componentDidMount:function(){
-		  this.listenTo(DistStore, this._onChange);  
-
-	},
-	_onChange:function(){
-		this.setState({presentationData: DistStore.getPresentationData()})
+	propTypes: {
+		presentationData : React.PropTypes.array,
+        distActions: React.PropTypes.object
 	},
 	render:function(){
-		var presData = this.state.presentationData;
+		var presData = this.props.presentationData;
 		var data= [];
 		_.forEach(presData, function(d){
 			data.push(
 			<tr className = "table-row">
-				    <td className = "table-col">{d.distName}</td>
-				    <td className = "table-col">{d.address}</td> 
-				    <td className = "table-col">{d.wLocation}</td>
-				    <td className = "table-col">{d.wCapacity}</td>
-				    <td className = "table-col">{d.dailySales}</td>
-				    <td className = "table-col">{d.monthlySales}</td>
+				    <td className = "table-col">{d.name}</td>
+				    <td className = "table-col">{d.location}</td> 
+			        <td className = "table-col">{d.sources[0].typeName}</td> 
+			        <td className = "table-col">{d.clients[0].name}</td> 
+				    <td className = "table-col">{d.completedInvestigation}</td>
+				    <td className = "table-col">{d.currentIntelligence}</td>
+				    <td className = "table-col">{d.pendingLeads}</td>
+				    <td className = "table-col">{d.taskingLeads}</td>
 				  </tr>)
 		})
 		
 		return(
 			<div className = "presentation-container">
 				<table>
-				  <th className = "table-row" colSpan = {6}>Distributor List</th>
+				  <th className = "table-row" colSpan = {7}>Distributor List</th>
 				  <tr className = "table-row table-header">
 				    <td className = "table-col">Main Distributor</td>
-				    <td className = "table-col">Address/Location</td> 
-				    <td className = "table-col">Warehouse Location</td> 
-				    <td className = "table-col">Warehouse Capacity</td> 
-				    <td className = "table-col">Daily Sales Volume Capacity</td> 
-				    <td className = "table-col">Monthly Sales Volume Capacity</td> 
+				    <td className = "table-col">Location</td> 
+				    <td className = "table-col">Sources</td> 
+				    <td className = "table-col">Clients</td> 
+				    <td className = "table-col">Completed Investigation</td> 
+				    <td className = "table-col">Current Intelligence</td> 
+				    <td className = "table-col">Pending Leads</td> 
+				    <td className = "table-col">Tasking Leads</td>
 				  </tr>
 				  {data}
 				</table>
-				<Link to = "/" ><div className= "generic-button">Home</div></Link>
+				<Link to = "/home" ><div className= "generic-button">Home</div></Link>
 			</div>
 		);
 	}

@@ -3,9 +3,10 @@ var Reflux = require('reflux')
 
 
 var DistributorAction = Reflux.createActions({
-	'getPresentationData': {},
     'setPresentationData': {},
-    'saveData':{}
+    'saveData':{},
+    'addSource':{},
+    'addClient':{}
 
 });
 module.exports = DistributorAction;

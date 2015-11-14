@@ -2,6 +2,8 @@ var React = require('react')
 	, Reflux = require('reflux')
 	, DistStore = require('../../store/distributor.store')
 	, DistAction = require('../../action/distributor.action')
+	, ManageSources = require('./manage.sources.react')
+	, ManageClients = require('./manage.clients.react')
 	, _ = require('lodash')
 	, Router = require('react-router')
     , Link = Router.Link;
@@ -11,27 +13,47 @@ var React = require('react')
 
 
 var Manage = React.createClass({
+	propTypes:{
+		distAction: React.PropTypes.object,
+		presentation: React.PropTypes.array,
+		sourceTypes:React.PropTypes.object
+	},
 	getInitialState: function(){
-		return({distName:"", address:"", wLocation:"",wCapacity:0, dailySales:0, monthlySales:0})
+		return(
+			 {
+                name:"", 
+                location:"", 
+                completedInvestigation:"",
+                currentIntelligence:"",
+                pendingLeads:"",
+                taskingLeads:"",
+                modifiedData:"",
+                sources:[],
+                clients:[]
+            })
 	},
 	_saveData:function(){
 		d = this.state;
-		var payLoad = {
-			distName:d.distName, 
-			address: d.address,
-			wLocation: d.wLocation,
-			wCapacity: d.wCapacity, 
-			dailySales:d.dailySales, 
-			monthlySales:d.monthlySales
-		}
-		DistAction.saveData(payLoad);
-		window.location="#/presentation"
+		this.props.distActions.saveData(d);
+		window.location="#/home/presentation"
 	},
 	_onChangeValue:function(name, e){
 		value = e.target.value;
 	 	var newState = {};
         newState[name] = value;
 		this.setState(newState);
+	},
+	_addSource:function(data) {
+		var newSources = this.state.sources;
+		newSources.push(data);
+		this.setState({sources:newSources})
+		console.log("saveing new source")
+	},
+	_addClient:function(data){
+		var newClients = this.state.clients;
+		newClients.push(data);
+		this.setState({clients:newClients})
+		console.log("adding new client")
 	},
 	render:function(){
 		var disData = this.state;
@@ -41,30 +63,47 @@ var Manage = React.createClass({
 					<li><b>Add New Entry</b></li>
 					<li>
 						<label>Main Distributor</label>
-						<div><input value = {disData.distName} onChange = {this._onChangeValue.bind(null, "distName")}/></div>
+						<div><input value = {disData.name} onChange = {this._onChangeValue.bind(null, "name")}/></div>
 					</li>
 				    <li>
 						<label>Address</label>
-						<div><input value = {disData.address} onChange = {this._onChangeValue.bind(null, "address")}/></div>
+						<div><input value = {disData.location} onChange = {this._onChangeValue.bind(null, "location")}/></div>
+					</li>
+					<li>
+						<label>Sources</label>
+						<ManageSources
+							 distAction = {DistAction}
+							 sourceTypes = {this.props.sourceTypes}
+							 addSource = {this._addSource}
+							 sources= {this.state.sources}
+						/>
+					</li>
+					<li>
+						<label>Clients</label>
+						<ManageClients
+							 distAction = {DistAction}
+							 addClient = {this._addClient}
+							 clients= {this.state.clients}
+						/>
 					</li>
 				    <li>
-						<label>Warehouse Location</label>
-						<div><input value = {disData.wLocation} onChange = {this._onChangeValue.bind(null, "wLocation")}/></div>
+						<label>Completed Investigation</label>
+						<div><textarea value = {disData.completedInvestigation} onChange = {this._onChangeValue.bind(null, "completedInvestigation")}/></div>
 					</li>
 				    <li>
-						<label>Warehouse Capacity</label>
-						<div><input value = {disData.wCapacity} onChange = {this._onChangeValue.bind(null, "wCapacity")}/></div>
+						<label>Current Intelligence</label>
+						<div><textarea value = {disData.currentIntelligence} onChange = {this._onChangeValue.bind(null, "currentIntelligence")}/></div>
 					</li>
 				   <li>
-						<label>Daily Sales Volume Capacity</label>
-						<div><input value = {disData.dailySales} onChange = {this._onChangeValue.bind(null, "dailySales")}/></div>
+						<label>Pending Leads</label>
+						<div><textarea value = {disData.pendingLeads} onChange = {this._onChangeValue.bind(null, "pendingLeads")}/></div>
 					</li>
 				    <li>
-						<label>Monthly Sales Volume Capacity</label>
-						<div><input value = {disData.monthlySales} onChange = {this._onChangeValue.bind(null, "monthlySales")}/></div>
+						<label>Tasking Leads</label>
+						<div><textarea value = {disData.taskingLeads} onChange = {this._onChangeValue.bind(null, "taskingLeads")}/></div>
 					</li>
 					 <li>
-						<Link to = "/" ><div className= "generic-button right">Home</div></Link>
+						<Link to = "/home" ><div className= "generic-button right">Home</div></Link>
 						<div className = "generic-button right" onClick = {this._saveData}>Save</div>
 					</li>
 				</ul>

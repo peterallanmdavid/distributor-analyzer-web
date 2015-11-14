@@ -7,20 +7,45 @@ var DistributorStore = Reflux.createStore({
     listenables: [DistAction],
     disData:{
         presentationData:[
-            {distName:"Lizel Margallo", address:"Walis City", wLocation:"Walis Underground",wCapacity:"235", dailySales:5300.00, monthlySales:45678.00}
+          /* {
+                name:"", 
+                location:"", 
+                completedInvestigation:"",
+                currentIntelligence:"",
+                pendingLeads:"",
+                taskingLeads:"",
+                modifiedData:"",
+                sources:[],
+                client:[]
+            }*/
+        ],
+        sourceTypes:[
+            {id: 1, name:"Warehouse"},
+            {id: 2, name:"Factory"},
+            {id: 3, name:"Retail Outlet"}
+
         ]
        
     },
     getPresentationData:function(){
         return this.disData.presentationData;
     },
-    setPresentationData:function(name, value){
+    getSourceTypes: function(){
+        return this.disData.sourceTypes;
+    },
+    onSetPresentationData:function(name, value){
         this.disData.presentationData[name]=value;
         this.trigger(this.disData);
     },
     onSaveData:function(data){
         this.disData.presentationData.push(data);
         this.trigger(this.disData);
+    },
+    onAddSource: function(data){
+        this.disData.presentationData.sources.push(data)
+    },
+    onAddClient:function(data){
+        this.disData.presentationData.clients.push(data)
     }
 
 });
