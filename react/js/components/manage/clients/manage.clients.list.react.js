@@ -11,10 +11,18 @@ var ClientList = React.createClass({
 		isAdding: React.PropTypes.bool
 	},
 	render:function(){
+        var that =this;
 		var clients = this.props.clients;
 		var clientItem = [];
 		_.forEach(clients, function(d){
-			clientItem.push(<ClientItem clientItem = {d}/>);
+			clientItem.push(
+                <ClientItem
+                    key = {d.id}
+                    clientItem = {d}
+                    removeClient = {that.props.removeClient}
+
+                />
+            );
 		});
 		var addButtonClass = classnames("add-button card-white",{"hidden":this.props.isAdding})
 		return(

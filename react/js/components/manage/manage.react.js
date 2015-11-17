@@ -65,6 +65,14 @@ var Manage = React.createClass({
 		this.setState({sources:newSources})
 		console.log("removing sources")
 	},
+    _removeClient:function(id){
+        var newClient = _.clone(this.state.clients);
+        var removed = _.remove(newClient, function(d){
+            return d.id.toString()===id.toString();
+        })
+        this.setState({clients:newClient})
+        console.log("removing client")
+    },
 	render:function(){
 		var disData = this.state;
 		return(
@@ -95,6 +103,7 @@ var Manage = React.createClass({
 							 distAction = {DistAction}
 							 addClient = {this._addClient}
 							 clients= {this.state.clients}
+                             removeClient = {this._removeClient}
 						/>
 					</li>
 				    <li>

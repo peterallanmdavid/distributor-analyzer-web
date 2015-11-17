@@ -1,5 +1,6 @@
 var React = require('react')
     , _ = require('lodash')
+    , TestSamplesList = require('./manage.clients.testsamples.react')
     ;
 
 var TestSamplesForm = React.createClass({
@@ -13,6 +14,13 @@ var TestSamplesForm = React.createClass({
     propTypes:{
         testSamples:React.PropTypes.array,
         addTestSamples: React.PropTypes.func
+    },
+    componentWillUnmount:function(){
+        this.setState({
+            name:"",
+            capacity:"",
+            testSamples:[]
+        });
     },
     _changeHandler:function(name, e){
         var value = e.target.value;
@@ -40,24 +48,11 @@ var TestSamplesForm = React.createClass({
     },
     render: function () {
         var ts = this.state.testSamples.length>0?this.state.testSamples:this.props.testSamples;
-        var tsItems = [];
-        _.forEach(ts, function(d){
-            tsItems.push(
-                <div className = "client-item-container">
-                    <div className = "client-item test-sample-row card-white">
-                        <div className = "item-field">{d.name}</div>
-                        <div className = "item-field">{d.capacity}</div>
-                    </div>
-                </div>
-            );
-        });
         return (
             <div className = "test-sample">
-                <div className = "client-item card">
-                    <div className = "item-field"><label>Name</label></div>
-                    <div className = "item-field"><label>Cases/Quantity</label></div>
-                </div>
-                {tsItems}
+                <TestSamplesList
+                    testSamples = {ts}
+                />
 
                 <div onKeyDown = {this._handleKeyDown}className = "client-form test-sample-row card-white">
                     <div className = "input-fields">

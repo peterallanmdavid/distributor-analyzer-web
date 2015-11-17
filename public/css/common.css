@@ -39,6 +39,12 @@
 .clearfix {
   clear: both;
 }
+.remove-button {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  color: #b94a48;
+}
 .modal-content {
   float: left;
   width: 100%;
@@ -53,7 +59,7 @@
   width: 100%;
   clear: both;
 }
-.modal-content .modal-footer {
+.modal-content .modal-header {
   float: left;
   width: 100%;
   clear: both;

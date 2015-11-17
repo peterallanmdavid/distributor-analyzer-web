@@ -93,15 +93,6 @@
 .source-item .header {
   width: 100%;
 }
-.source-item .remove-button {
-  position: absolute;
-  right: 10px;
-  top: 15px;
-  color: #b94a48;
-}
-.source-item .remove-button:hover {
-  color: #D14;
-}
 .si-row {
   width: 100%;
   display: inline-flex;
@@ -141,6 +132,8 @@
   width: 100%;
   position: relative;
   display: inline-flex;
+  margin-top: 0;
+  border-top: 0;
 }
 .client-item .item-field {
   width: 25%;

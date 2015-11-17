@@ -37,6 +37,12 @@ var SourcesForm = React.createClass({
 	},
 	_saveSource:function(){
 		this.props.addClient(this.state);
+        this.setState({
+            name:"",
+            owner:"",
+            location:"",
+            testSamples:[]
+        })
 	},
     _closeModal:function(){
         this.setState({showModal:false})
@@ -62,6 +68,12 @@ var SourcesForm = React.createClass({
 
 	render:function(){
 		var addTestSampleButton = (<div><i className="fa fa-plus-circle"></i>Add Test Sample</div>);
+        var testSampleCount = (this.state.testSamples.length>0? (
+            <div onClick = {this._launchTestSamplesForm} className = "test-sample-count">{this.state.testSamples.length}</div>):
+            (<GenericButton
+            onClickHandler = {this._launchTestSamplesForm}
+            buttonText ={addTestSampleButton}
+        />));
         return(
 			<div className = "client-form card-white">
 				<div className = "input-fields">
@@ -74,13 +86,10 @@ var SourcesForm = React.createClass({
 					<input value= {this.state.location} onChange ={this._changeQuantity.bind(null, "location")}/>
 				</div>
                 <div className = "input-fields">
-                    <GenericButton
-                        onClickHandler = {this._launchTestSamplesForm}
-                        buttonText ={addTestSampleButton}
-                    />
+                    {testSampleCount}
                 </div>
-				<div className = "input-field action-buttons"> 
-					<i onClick = {this._saveSource} className="fa fa-check-circle"></i>
+				<div className = "input-field action-buttons">
+                    <i onClick = {this._saveSource} className="fa fa-check-circle"></i>
 					<i onClick = {this.props.closeForm} className="fa fa-times-circle"></i>
 				</div>
 
