@@ -43,7 +43,7 @@ var Presentation = React.createClass({
 				  </tr>
 				  {data}
 				</table>
-				<Link to = "/home" ><div className= "generic-button">Home</div></Link>
+				<Link to = "/" ><div className= "generic-button">Home</div></Link>
 			</div>
 		);
 	}

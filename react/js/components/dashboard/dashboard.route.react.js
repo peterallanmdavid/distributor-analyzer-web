@@ -2,9 +2,7 @@ var React = require('react')
 	, Reflux = require('reflux')
 	, HomeHeader = require('../home/home.header.react')
 	, HomeFooter = require('../home/home.footer.react')
-	, HomeContent = require('../home/home.content.react')
   	, Router = require('react-router')
-  	, Navigation = Router.Navigation
   	, RouteHandler = Router.RouteHandler
 	;
 
@@ -13,10 +11,9 @@ var React = require('react')
 var DashboardRoute = React.createClass({
 	render:function(){
 		return(
-			<div>
+			<div className = "general-container">
 				<HomeHeader />
 				<RouteHandler />
-				<HomeFooter />
 			</div>
 		);
 	}

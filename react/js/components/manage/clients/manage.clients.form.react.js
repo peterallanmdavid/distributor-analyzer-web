@@ -29,15 +29,12 @@ var SourcesForm = React.createClass({
 		return(
 			<div className = "client-form card-white">
 				<div className = "input-fields">
-					<label> Name: </label>
 					<input value= {this.state.name} onChange ={this._changeQuantity.bind(null, "name")}/>
 				</div>
 				<div className = "input-fields">
-					<label> Owner: </label>
 					<input value= {this.state.owner} onChange ={this._changeQuantity.bind(null, "owner")}/>
 				</div>
 				<div className = "input-fields">
-					<label> Location: </label>
 					<input value= {this.state.location} onChange ={this._changeQuantity.bind(null, "location")}/>
 				</div>
 				<div className = "input-field action-buttons"> 

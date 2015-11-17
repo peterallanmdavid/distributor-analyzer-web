@@ -4,24 +4,32 @@ var React = require('react')
 	, DistStore = require('../../store/distributor.store')
 	, DistAction = require('../../action/distributor.action')
   	, Router = require('react-router')
-  	, Navigation = Router.Navigation
+  	, SideMenu  = require('../sidemenu/side.menu.react')
  	, RouteHandler = Router.RouteHandler
-    , Link = Router.Link;
+    , Link = Router.Link
+    , RouteStore = require('../../store/route.store')
+    , HomeContent = require('./home.content.react')
 
 
 
 var HomeComponent = React.createClass({
+
 	mixins: [Reflux.ListenerMixin],
 	getInitialState: function(){
 		return({
 			presentationData: DistStore.getPresentationData(),
-			sourceTypes: DistStore.getSourceTypes()
+			sourceTypes: DistStore.getSourceTypes(),
+            routeData:RouteStore.getRouteData()
 		})
 	},
 	componentDidMount:function(){
-		  this.listenTo(DistStore, this._onChange);  
+		  this.listenTo(DistStore, this._onChange);
+          this.listenTo(RouteStore, this._onRouteChange);
 
-	},
+    },
+    _onRouteChange:function(data){
+        this.setState({routeData:RouteStore.getRouteData()})
+    },
 	_onChange:function(){
 		this.setState({presentationData: DistStore.getPresentationData()})
 	},
@@ -45,14 +53,18 @@ var HomeComponent = React.createClass({
 		return functions;
 	},
 	render:function() {
-		var distActions = this._disActions()
+		var distActions = this._disActions();
+        var sideMenu = (this.state.routeData.route.path==="/"?<HomeContent />:<SideMenu />)
 		return(
-			<div className = "home-content">
+			<div className = "main-container">
+                {sideMenu}
+                <div className = "main-content">
 				<RouteHandler
                        presentationData = {this.state.presentationData}
                        sourceTypes= {this.state.sourceTypes}
                        distActions = {distActions}
                 />
+                </div>
 			</div>
 		);
 	}

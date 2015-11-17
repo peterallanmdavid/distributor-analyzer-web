@@ -11,27 +11,33 @@
   padding: 10px;
   background-color: #CCCCCC;
   z-index: 9;
+  height: 50px;
+  img{
+    position: absolute;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    background-color:white;
+    bottom: -20px;
+
+  }
 }
-.home-content{
-  margin-top: 100px;
-  margin-bottom: 100px;
+.main-container{
   width: 100%;
+  height: 100%;
+  float:left;
   margin-left: auto;
   margin-right: auto;
+  display:inline-flex;
+}
+.main-content{
+  margin-left: 270px;
+  margin-right: 20px;
 }
 
-.homeHeader>img{
-  position: absolute;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  width: 70px;
-  height: 70px;
-  border-radius: 35px;
-  -webkit-border-radius: 35px;
-  -moz-border-radius: 35px;
-  background-color:white;
-  bottom: -20px;
-
-}
 .home-button{
   width: 200px;
   float:left;
@@ -63,16 +69,19 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-.presentation-container>table{
-  background: #fff;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  border-radius: 6px;
-  margin-bottom: 14px;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 10px;
-  padding-left: 0;
+.presentation-container{
+
+  table{
+    background: #fff;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    padding-left: 0;
+  }
 }
 
 .table-row{
@@ -93,159 +102,19 @@
   text-align: center;
 }
 
-
-
-
-
-.manage-container>ul{
-  background: #fff;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  border-radius: 6px;
-  margin-bottom: 14px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  padding-left: 0;
-  list-style: none!important;
-}
-.manage-container>ul>li{
-  overflow: hidden;
-  border-top: 1px solid #dfdfdf;
-  padding: 15px 21px 15px 27px;
-}
-
-.manage-container>ul>li>label{
-  float: left;
-  font-size: 13px;
-  font-weight: normal;
-  width: 216px;
-  color: #555;
-  word-wrap: break-word;
-  vertical-align: middle;
-  padding-left: 8px;
-}
-.manage-text-area>textarea{
-  width: 70%;
-  height:100px;
-}
-
-
-
-
-/*CSS for Source Form*/
-.add-button{
+.general-container{
   float:left;
   width: 100%;
-  margin-top: 0 !important;
-  border-top:0 !important;
-  text-align: center;
-}
-.add-button>.fa{
-  margin-right: 10px;
-}
-.source-form{
-  float:left;
-  width: 100%;
-  position: relative;
-}
-.source-form>.form-row>.input-field{
-  float:left;
-  margin-right: 50px;
-}
-.source-form>.form-row>.input-field>input{
-  width: 120px;
-  text-align: right;
-}
-.form-row{
-  float: left;
-  display: inline-flex;
+  height:100%;
+  margin-top: 50px;
 }
 
-.source-form>.form-row>label{
-  float:left;
-  clear:both;
-  font-weight: normal;
-}
-.action-buttons{
-  position: absolute;
-  right:10px;
-  top: 23px;
-  font-size: 20px;
-}
-.action-buttons>.fa-check-circle{
-  color:#468847;
-  margin-right: 15px;
-}
-.action-buttons>.fa-times-circle{
-  color:#b94a48;
-}
-.source-type> select{
-  height:26px;
+.side-menu{
+  position:fixed;
+  width: 250px;
+  height: 100%;
+  background-color: #3A3633;
 }
 
 
 
-.source-item{
-  float:left;
-  width: 100%;
-  position: relative;
-}
-.source-item>.header{
-  width: 100%;
-}
-.si-row{
-  width: 100%;
-  display: inline-flex;
-}
-.si-row>.si-field{
-  width: 25%;
-}
-.si-row>.si-field>label{
-  margin-right:5px;
-}
-.source-item>.remove-button{
-  position: absolute;
-  right: 10px;
-  top: 15px;
-  color: #b94a48;
-}
-.source-item>.remove-button:hover{
-  color:#D14;
-}.source-item-container >.card-white{
-   margin-top: 0;
-   border-top:0;
- }
-
-
-
-.client-form{
-  position: relative;
-  display: inline-flex;
-  float: left;
-  width: 100%;
-}
-.client-form>.input-fields{
-  float:left;
-  margin-right: 50px;
-}
-.client-form>.input-fields>input{
-  float:left;
-  clear:both;
-}
-
-.client-form>.input-fields>label{
-  float:left;
-}
-
-.client-item{
-  float: left;
-  width: 100%;
-  position: relative;
-  display: inline-flex;
-}
-
-.client-item>.item-field{
-  width: 25%;
-}

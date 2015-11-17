@@ -10,15 +10,16 @@ var React = require('react')
   , Presentation= require('./components/presentation/presentation.react')
   , Manage= require('./components/manage/manage.react')
   , HomeContent = require('./components/home/home.content.react')
+  , RouteAction = require('./action/route.action')
   ;
 
 var routes = (
     <Route name="dashboard" path="/" handler={DashboardRoute}>
     	<DefaultRoute handler={Home}/>
     	<Route name="home" handler={Home} >
-        <DefaultRoute handler={HomeContent}/>
-        <Route name="presentation" handler={Presentation} />
-        <Route name="manage" handler={Manage} />
+            <DefaultRoute name="homecontent"handler={HomeContent}/>
+            <Route name="presentation" handler={Presentation} />
+            <Route name="manage" handler={Manage} />
       </Route>
     </Route>
     )
@@ -38,4 +39,5 @@ Router.run(routes, function (Handler) {
         pathname: this.getCurrentPathname(),
         previouspath: previouspath
     };
+    RouteAction.changeRoute(data);
 });

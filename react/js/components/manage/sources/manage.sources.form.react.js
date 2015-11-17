@@ -49,7 +49,6 @@ var SourcesForm = React.createClass({
 			<div className = "source-form card-white">
 				<div className = "form-row">
 					<div className = "input-field">
-						<div>Source Type:</div>
 						<CommonDropDown
 						 	optionsArray={sourceTypes}
 					        optionSelected= {this._sourceTypeSelected}
@@ -61,15 +60,12 @@ var SourcesForm = React.createClass({
 						/>
 					</div>
 					<div className = "input-field">
-						<div>Daily QTY:</div>
 						<input value= {this.state.quantityDaily} onChange ={this._changeQuantity.bind(null, "quantityDaily")}/>
 					</div>
 					<div className = "input-field">
-						<div>Weekly QTY:</div>
 						<input value= {this.state.quantityWeekly} onChange ={this._changeQuantity.bind(null, "quantityWeekly")}/>
 					</div>
 					<div className = "input-field">
-						<div>Monthly QTY:</div>
 						<input value= {this.state.quantityMonthly} onChange ={this._changeQuantity.bind(null, "quantityMonthly")}/>
 					</div>
 				</div>

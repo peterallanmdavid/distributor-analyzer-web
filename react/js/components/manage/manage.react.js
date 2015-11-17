@@ -113,7 +113,7 @@ var Manage = React.createClass({
 						<div className = "manage-text-area"><textarea value = {disData.taskingLeads} onChange = {this._onChangeValue.bind(null, "taskingLeads")}/></div>
 					</li>
 					 <li>
-						<Link to = "/home" ><div className= "generic-button right">Home</div></Link>
+						<Link to = "/" ><div className= "generic-button right">Home</div></Link>
 						<div className = "generic-button right" onClick = {this._saveData}>Save</div>
 					</li>
 				</ul>
