@@ -5,6 +5,8 @@ var React = require('react')
 var SourcesForm = React.createClass({
 	getInitialState:function(){
 		return({
+            id:0,
+            name:"",
 			typeId: 0,
 			typeName:"",
 			quantityDaily:0,
@@ -32,6 +34,7 @@ var SourcesForm = React.createClass({
 	},
 	_saveSource:function(){
 		var data = {
+            name:this.state.name,
 			typeId: this.state.typeId,
 			typeName: this.state.typeName,
 			quantity:{
@@ -48,6 +51,9 @@ var SourcesForm = React.createClass({
 		return(
 			<div className = "source-form card-white">
 				<div className = "form-row">
+                    <div className = "input-field">
+                        <input className = "ta-left" value= {this.state.name} onChange ={this._changeQuantity.bind(null, "name")}/>
+                    </div>
 					<div className = "input-field">
 						<CommonDropDown
 						 	optionsArray={sourceTypes}

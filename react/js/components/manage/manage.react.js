@@ -79,7 +79,7 @@ var Manage = React.createClass({
 						<div><input value = {disData.location} onChange = {this._onChangeValue.bind(null, "location")}/></div>
 					</li>
 					<li>
-						<label>Sources</label>
+						<label className = "label-multiple-value">Sources</label>
 						<ManageSources
 							 distAction = {DistAction}
 							 sourceTypes = {this.props.sourceTypes}
@@ -89,7 +89,7 @@ var Manage = React.createClass({
 						/>
 					</li>
 					<li>
-						<label>Clients</label>
+						<label className = "label-multiple-value">Clients</label>
 						<ManageClients
 							 distAction = {DistAction}
 							 addClient = {this._addClient}

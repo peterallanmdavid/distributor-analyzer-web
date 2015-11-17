@@ -5,7 +5,9 @@
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   border-radius: 6px;
-  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .manage-container ul {
   padding-left: 0;
@@ -15,19 +17,20 @@
   overflow: hidden;
   border-top: 1px solid #dfdfdf;
   padding: 15px 21px 15px 27px;
+  width: 100%;
 }
 .manage-container ul li label {
   float: left;
   font-size: 13px;
   font-weight: normal;
-  width: 216px;
+  width: 25%;
   color: #555;
   word-wrap: break-word;
   vertical-align: middle;
-  padding-left: 8px;
+  margin-bottom: 0;
 }
 .manage-text-area textarea {
-  width: 70%;
+  width: 75%;
   height: 100px;
 }
 /*CSS for Source Form*/
@@ -45,14 +48,17 @@
   float: left;
   width: 100%;
   position: relative;
+  margin-top: 0;
+  border-top: 0;
 }
 .source-form .form-row {
   float: left;
   display: inline-flex;
+  width: 100%;
 }
 .source-form .form-row .input-field {
   float: left;
-  margin-right: 50px;
+  width: 20%;
 }
 .source-form .form-row .input-field input {
   width: 120px;
@@ -66,7 +72,7 @@
 .action-buttons {
   position: absolute;
   right: 10px;
-  top: 23px;
+  top: 8px;
   font-size: 20px;
 }
 .action-buttons .fa-check-circle {
@@ -101,10 +107,10 @@
   display: inline-flex;
 }
 .si-row .si-field {
-  width: 25%;
+  width: 20%;
 }
 .si-row .si-field label {
-  margin-right: 5px;
+  width: 100%;
 }
 .source-item-container .card-white {
   margin-top: 0;
@@ -119,7 +125,7 @@
 }
 .client-form .input-fields {
   float: left;
-  margin-right: 50px;
+  width: 25%;
 }
 .client-form .input-fields input {
   float: left;
@@ -136,4 +142,7 @@
 }
 .client-item .item-field {
   width: 25%;
+}
+.client-item .item-field label {
+  width: 100%;
 }

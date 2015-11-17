@@ -1,44 +1,41 @@
-.hidden{
-	display:none;
+.hidden {
+  display: none;
 }
-
-.center{
-    text-align: center;
+.center {
+  text-align: center;
 }
-
-.generic-button{
-    padding: 5px;
-    text-align: center;
-    border: 1px solid #ccc;
-    width: 150px;
-    border-radius: 10px;
-    background-color: #708090;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
+.generic-button {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ccc;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #708090;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
 }
-
-.right{
-    float: right;
+.right {
+  float: right;
 }
-
-.card{
-    border: 1px solid #D8D8D8;
-    background-color: #F5F5F5;
-    padding: 9px;
-    margin-top: 5px;
+.ta-right {
+  text-align: right !important;
 }
-.card-white{
-    border: 1px solid #D8D8D8;
-    background-color: white;
-    padding: 9px;
-    margin-top: 5px;
+.ta-left {
+  text-align: left !important;
 }
-
-.clearfix{
-    clear:both;
+.card {
+  border: 1px solid #D8D8D8;
+  background-color: #F5F5F5;
+  padding: 9px;
+  margin-top: 5px;
 }
-
-input, select{
-    
+.card-white {
+  border: 1px solid #D8D8D8;
+  background-color: white;
+  padding: 9px;
+  margin-top: 5px;
+}
+.clearfix {
+  clear: both;
 }

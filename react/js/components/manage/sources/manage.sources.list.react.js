@@ -21,6 +21,7 @@ var SourcesList = React.createClass({
 			<div>
 				<div className = "source-item card">
 					<div className = "si-row header">
+                        <div className = "si-field"><label>Source Location</label></div>
 						<div className = "si-field"><label>Source Type</label></div>
 						<div className = "si-field"><label>Daily Quantity</label></div>
 						<div className = "si-field"><label>Weekly Quantity</label></div>
