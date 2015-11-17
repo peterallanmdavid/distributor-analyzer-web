@@ -52,6 +52,7 @@ var Manage = React.createClass({
 	},
 	_addClient:function(data){
 		var newClients = this.state.clients;
+        data.id = CommonUtils.getCurrentId(newClients);
 		newClients.push(data);
 		this.setState({clients:newClients})
 		console.log("adding new client")

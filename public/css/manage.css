@@ -122,6 +122,8 @@
   display: inline-flex;
   float: left;
   width: 100%;
+  margin-top: 0;
+  border-top: 0;
 }
 .client-form .input-fields {
   float: left;
@@ -145,4 +147,22 @@
 }
 .client-item .item-field label {
   width: 100%;
+}
+.test-sample .test-sample-row {
+  margin-top: 0;
+  border-top: 0;
+}
+.test-sample .client-item .item-field {
+  text-align: center;
+  width: 50%;
+}
+.test-sample .input-fields {
+  width: 50%;
+  padding: 0 20px;
+}
+.test-sample .input-fields input {
+  width: 100%;
+}
+.test-sample .action-buttons {
+  right: -10px;
 }

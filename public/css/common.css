@@ -39,3 +39,22 @@
 .clearfix {
   clear: both;
 }
+.modal-content {
+  float: left;
+  width: 100%;
+}
+.modal-content .modal-header {
+  float: left;
+  width: 100%;
+  clear: both;
+}
+.modal-content .modal-body {
+  float: left;
+  width: 100%;
+  clear: both;
+}
+.modal-content .modal-footer {
+  float: left;
+  width: 100%;
+  clear: both;
+}
