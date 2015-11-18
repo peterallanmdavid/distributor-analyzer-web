@@ -29,7 +29,170 @@ var DistributorStore = Reflux.createStore({
        
     },
     getPresentationData:function(){
-        return this.disData.presentationData;
+        return ([
+            {
+                "name": "Test Distributor",
+                "location": "Tondo, manila",
+                "completedInvestigation": "asdadadd",
+                "currentIntelligence": "asdasdasd",
+                "pendingLeads": "asdasdasd",
+                "taskingLeads": "asdasdadasd",
+                "modifiedData": "",
+                "sources": [
+                    {
+                        "name": "San Jose Builders",
+                        "typeId": "3",
+                        "typeName": "Retail Outlet",
+                        "quantity": {
+                            "daily": "12",
+                            "weekly": "2323",
+                            "monthly": "232"
+                        },
+                        "id": 1
+                    },
+                    {
+                        "name": "San Maria Strato",
+                        "typeId": "3",
+                        "typeName": "Retail Outlet",
+                        "quantity": {
+                            "daily": "23",
+                            "weekly": "56",
+                            "monthly": "15"
+                        },
+                        "id": 2
+                    }
+                ],
+                "clients": [
+                    {
+                        "id": 1,
+                        "name": "Jommel's Yosihan",
+                        "owner": "Jommel Papa",
+                        "location": "Cavite, Dasmarinas",
+                        "testSamples": [
+                            {
+                                "name": "Marlboro",
+                                "capacity": "2345",
+                                "id": 1
+                            },
+                            {
+                                "name": "Hope",
+                                "capacity": "25",
+                                "id": 2
+                            },
+                            {
+                                "name": "Fortune",
+                                "capacity": "1456",
+                                "id": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "Jommel's Yosihan",
+                        "owner": "Jommel Papa",
+                        "location": "Cavite, Dasmarinas",
+                        "testSamples": [
+                            {
+                                "name": "Marlboro",
+                                "capacity": "2345",
+                                "id": 1
+                            },
+                            {
+                                "name": "Hope",
+                                "capacity": "25",
+                                "id": 2
+                            },
+                            {
+                                "name": "Fortune",
+                                "capacity": "1456",
+                                "id": 3
+                            }
+                        ]
+                    },
+                ]
+            },
+            {
+                "name": "Test Distributor 2",
+                "location": "Tondo, manila",
+                "completedInvestigation": "asdadadd",
+                "currentIntelligence": "asdasdasd",
+                "pendingLeads": "asdasdasd",
+                "taskingLeads": "asdasdadasd",
+                "modifiedData": "",
+                "sources": [
+                    {
+                        "name": "San Jose Builders",
+                        "typeId": "3",
+                        "typeName": "Retail Outlet",
+                        "quantity": {
+                            "daily": "12",
+                            "weekly": "2323",
+                            "monthly": "232"
+                        },
+                        "id": 1
+                    },
+                    {
+                        "name": "San Maria Strato",
+                        "typeId": "3",
+                        "typeName": "Retail Outlet",
+                        "quantity": {
+                            "daily": "23",
+                            "weekly": "56",
+                            "monthly": "15"
+                        },
+                        "id": 2
+                    }
+                ],
+                "clients": [
+                    {
+                        "id": 1,
+                        "name": "Jommel's Yosihan",
+                        "owner": "Jommel Papa",
+                        "location": "Cavite, Dasmarinas",
+                        "testSamples": [
+                            {
+                                "name": "Marlboro",
+                                "capacity": "2345",
+                                "id": 1
+                            },
+                            {
+                                "name": "Hope",
+                                "capacity": "25",
+                                "id": 2
+                            },
+                            {
+                                "name": "Fortune",
+                                "capacity": "1456",
+                                "id": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "Jommel's Yosihan",
+                        "owner": "Jommel Papa",
+                        "location": "Cavite, Dasmarinas",
+                        "testSamples": [
+                            {
+                                "name": "Marlboro",
+                                "capacity": "2345",
+                                "id": 1
+                            },
+                            {
+                                "name": "Hope",
+                                "capacity": "25",
+                                "id": 2
+                            },
+                            {
+                                "name": "Fortune",
+                                "capacity": "1456",
+                                "id": 3
+                            }
+                        ]
+                    },
+                ]
+            }
+        ])
     },
     getSourceTypes: function(){
         return this.disData.sourceTypes;

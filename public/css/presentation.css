@@ -1,0 +1,27 @@
+.presentation-container table {
+  background: #fff;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 6px;
+  margin-bottom: 14px;
+  margin-top: 10px;
+  padding-left: 0;
+  width: 100%;
+}
+.presentation-container .table-row {
+  overflow: hidden;
+  border-top: 1px solid #dfdfdf;
+  padding: 15px 21px 15px 27px;
+}
+.presentation-container .table-col {
+  overflow: hidden;
+  border-right: 1px solid #dfdfdf;
+  padding: 15px 21px 15px 27px;
+  text-align: center;
+}
+.presentation-container .table-header > td {
+  font-weight: bold;
+}
+.presentation-container .presentation-container > table > tbody > tr > th {
+  text-align: center;
+}
