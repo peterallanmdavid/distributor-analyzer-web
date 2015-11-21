@@ -2,6 +2,7 @@ var React = require('react')
     , GenericButton = require('../common/generic.button.react')
     , Modal = require('../common/generic.modal.react')
     , SourcesList = require('../manage/sources/manage.sources.list.react')
+    , ActionButtons = require('./presentation.list.actions.react')
     ;
 
 var PresentationListItem = React.createClass({
@@ -44,6 +45,7 @@ var PresentationListItem = React.createClass({
         return (
 
                 <tr className = "table-row">
+                    <td className = "table-col"><ActionButtons id = {d.id.toString()}/></td>
                     <td className = "table-col">{d.name}</td>
                     <td className = "table-col">{d.location}</td>
                     <td className = "table-col">{d.sources.length} <GenericButton

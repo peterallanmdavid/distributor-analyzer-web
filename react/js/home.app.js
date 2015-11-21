@@ -11,15 +11,21 @@ var React = require('react')
   , Manage= require('./components/manage/manage.react')
   , HomeContent = require('./components/home/home.content.react')
   , RouteAction = require('./action/route.action')
+  , Distributor = require('./components/distributor/distributor.react')
+  , DistributorDetails = require('./components/distributor/distributor.details.react')
   ;
 
 var routes = (
     <Route name="dashboard" path="/" handler={DashboardRoute}>
     	<DefaultRoute handler={Home}/>
     	<Route name="home" handler={Home} >
-            <DefaultRoute name="homecontent"handler={HomeContent}/>
-            <Route name="presentation" handler={Presentation} />
-            <Route name="manage" handler={Manage} />
+            <DefaultRoute handler={HomeContent}/>
+            <Route name = "distributor" handler = {Distributor}>
+                <DefaultRoute handler={Presentation}/>
+                <Route name = "distributordetails" path = "d/:distributorId" handler = {DistributorDetails} />
+                <Route name = "editdistributor" path = "d/:distributorId/edit" handler = {Manage} />
+                <Route name = "createdistributor" path = "create" handler = {Manage} />
+            </Route>
       </Route>
     </Route>
     )

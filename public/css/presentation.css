@@ -4,7 +4,6 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   border-radius: 6px;
   margin-bottom: 14px;
-  margin-top: 10px;
   padding-left: 0;
   width: 100%;
 }
@@ -24,4 +23,65 @@
 }
 .presentation-container .presentation-container > table > tbody > tr > th {
   text-align: center;
+}
+.view-distributor {
+  background-color: white;
+  border-radius: 6px;
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.view-distributor .text-label-header {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+.view-distributor .row-field {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.view-distributor .info-card {
+  position: relative;
+}
+.view-distributor .info-card .menu-buttons {
+  position: absolute;
+  right: 0px;
+}
+.view-distributor .info-card .menu-buttons .edit-button {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 5px;
+  color: #333;
+  float: left;
+}
+.view-distributor .info-card .avatar {
+  float: left;
+  padding: 2px;
+  border: 1px solid #ccc;
+}
+.view-distributor .info-card .avatar img {
+  height: 50px;
+  width: 50px;
+}
+.view-distributor .info-card .deets {
+  float: left;
+  margin-left: 10px;
+}
+.view-distributor .info-card .deets .name {
+  font-weight: bold;
+}
+.view-distributor .clients-list {
+  float: left;
+  overflow-y: scroll;
+  height: 230px;
+  width: 100%;
+}
+.view-distributor .clients-list .clients-item {
+  float: left;
+  width: 33%;
+  margin-right: .3%;
+}
+.view-distributor .clients-list .clients-item .info-card {
+  float: left;
+  width: 100%;
 }

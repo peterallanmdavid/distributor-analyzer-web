@@ -7,7 +7,7 @@ var React = require('react')
 var Sources = React.createClass({
 	getInitialState:function(){
 		return({
-			isAdding:false,
+			isAdding:false
 		})
 	},
 	propTypes:{

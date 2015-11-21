@@ -7,17 +7,14 @@ var React = require('react')
 var Clients = React.createClass({
 	getInitialState:function(){
 		return({
-			isAdding:false,
+			isAdding:false
 		})
 	},
 	propTypes:{
 		addClient:React.PropTypes.func,
 		clients: React.PropTypes.array,
-		distAction: React.PropTypes.object
-	},
-	_toggleForm:function(){
-		var currState = this.state.isAdding;
-		this.setState({isAdding:!currState});
+        removeClient: React.PropTypes.func,
+        removeTestSamples: React.PropTypes.func
 	},
 	_closeForm:function(){
 		this.setState({isAdding:false});
@@ -41,6 +38,7 @@ var Clients = React.createClass({
 					distAction = {this.props.distAction}
 					addClient = {this.props.addClient}
 					closeForm = {this._closeForm}
+                    removeTestSamples = {this.props.removeTestSamples}
 				/>
 				</div>
 			</div>

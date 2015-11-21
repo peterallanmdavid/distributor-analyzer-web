@@ -14,67 +14,36 @@ var React = require('react')
 
 var Manage = React.createClass({
 	propTypes:{
-		distAction: React.PropTypes.object,
-		presentation: React.PropTypes.array,
-		sourceTypes:React.PropTypes.object
-	},
-	getInitialState: function(){
-		return(
-			 {
-                name:"", 
-                location:"", 
-                completedInvestigation:"",
-                currentIntelligence:"",
-                pendingLeads:"",
-                taskingLeads:"",
-                modifiedData:"",
-                sources:[],
-                clients:[]
-            })
+        distActions: React.PropTypes.object,
+		sourceTypes:React.PropTypes.object,
+        distributorForm:React.PropTypes.object
 	},
 	_saveData:function(){
-		d = this.state;
-		this.props.distActions.saveData(d);
-		window.location="#/home/presentation"
+		this.props.distActions.saveData();
+		window.location="#/home/distributor"
 	},
 	_onChangeValue:function(name, e){
-		value = e.target.value;
-	 	var newState = {};
-        newState[name] = value;
-		this.setState(newState);
+		var value = e.target.value;
+	 	this.props.distActions.setDistributorForm(name, value);
 	},
 	_addSource:function(data) {
-		var newSources = this.state.sources;
-		data.id = CommonUtils.getCurrentId(newSources);
-		newSources.push(data);
-		this.setState({sources:newSources})
-		console.log("saveing new source")
+		this.props.distActions.addSource(data);
 	},
 	_addClient:function(data){
-		var newClients = this.state.clients;
-        data.id = CommonUtils.getCurrentId(newClients);
-		newClients.push(data);
-		this.setState({clients:newClients})
-		console.log("adding new client")
+		this.props.distActions.addClient(data);
 	},
 	_removeSource:function(id){
-		var newSources = _.clone(this.state.sources);
-		var removed = _.remove(newSources, function(d){
-			return d.id.toString()===id.toString();
-		})
-		this.setState({sources:newSources})
-		console.log("removing sources")
+        this.props.distActions.removeSource(id);
 	},
     _removeClient:function(id){
-        var newClient = _.clone(this.state.clients);
-        var removed = _.remove(newClient, function(d){
-            return d.id.toString()===id.toString();
-        })
-        this.setState({clients:newClient})
-        console.log("removing client")
+        this.props.distActions.removeClient(id);
+    },
+    _removeTestSamples:function(id){
+        this.props.distActions.removeTestSamples(id);
     },
 	render:function(){
-		var disData = this.state;
+		var disData = this.props.distributorForm;
+
 		return(
 			<div className = "manage-container">
 				<ul>
@@ -90,11 +59,11 @@ var Manage = React.createClass({
 					<li>
 						<label className = "label-multiple-value">Sources</label>
 						<ManageSources
-							 distAction = {DistAction}
+							 distAction = {this.props.distActions}
 							 sourceTypes = {this.props.sourceTypes}
 							 addSource = {this._addSource}
 							 removeSource = {this._removeSource}
-							 sources= {this.state.sources}
+							 sources= {disData.sources}
 						/>
 					</li>
 					<li>
@@ -102,8 +71,9 @@ var Manage = React.createClass({
 						<ManageClients
 							 distAction = {DistAction}
 							 addClient = {this._addClient}
-							 clients= {this.state.clients}
+							 clients= {disData.clients}
                              removeClient = {this._removeClient}
+                             removeTestSamples = {this._removeTestSamples}
 						/>
 					</li>
 				    <li>
@@ -123,7 +93,7 @@ var Manage = React.createClass({
 						<div className = "manage-text-area"><textarea value = {disData.taskingLeads} onChange = {this._onChangeValue.bind(null, "taskingLeads")}/></div>
 					</li>
 					 <li>
-						<Link to = "/" ><div className= "generic-button right">Home</div></Link>
+						<Link to = "/home/distributor" ><div className= "generic-button right">Home</div></Link>
 						<div className = "generic-button right" onClick = {this._saveData}>Save</div>
 					</li>
 				</ul>

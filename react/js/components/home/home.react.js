@@ -17,8 +17,7 @@ var HomeComponent = React.createClass({
 	mixins: [Reflux.ListenerMixin],
 	getInitialState: function(){
 		return({
-			presentationData: DistStore.getPresentationData(),
-			sourceTypes: DistStore.getSourceTypes(),
+            distributorData: DistStore.getDistributorData(),
             routeData:RouteStore.getRouteData()
 		})
 	},
@@ -31,38 +30,14 @@ var HomeComponent = React.createClass({
         this.setState({routeData:RouteStore.getRouteData()})
     },
 	_onChange:function(){
-		this.setState({presentationData: DistStore.getPresentationData()})
-	},
-	_disActions:function(){
-		var that = this
-		var functions = {
-			setPresentationData:function(name, value){
-				DistAction.setPresentationData(name,value);
-			},
-			saveData:function(data){
-				DistAction.saveData(data);
-			},
-			addSource:function(data){
-				DistAction.addSource(data);
-			},
-			addClient:function(data){
-				DistAction.addClient(data);
-			}
-			
-		}
-		return functions;
+		this.setState({distributorData: DistStore.getDistributorData()})
 	},
 	render:function() {
-		var distActions = this._disActions();
-        var sideMenu = (this.state.routeData.route.path==="/"?<HomeContent />:<SideMenu />)
 		return(
 			<div className = "main-container">
-                {sideMenu}
                 <div className = "main-content">
 				<RouteHandler
-                       presentationData = {this.state.presentationData}
-                       sourceTypes= {this.state.sourceTypes}
-                       distActions = {distActions}
+                        distributorData = {this.state.distributorData}
                 />
                 </div>
 			</div>

@@ -9,7 +9,7 @@ var React = require('react')
 
 var Presentation = React.createClass({
 	propTypes: {
-		presentationData : React.PropTypes.array,
+        allDistributors : React.PropTypes.array,
         distActions: React.PropTypes.object
 	},
     getInitialState:function(){
@@ -26,19 +26,23 @@ var Presentation = React.createClass({
     },
 	render:function(){
         var that = this;
-		var presData = this.props.presentationData;
+		var presData = this.props.allDistributors;
 		var data= [];
-		_.forEach(presData, function(d){
-			data.push(
-                <PresentationItem presentationDataItem ={d} />
-			)
-		})
+        if(presData.length>0){
+            _.forEach(presData, function(d){
+                data.push(
+                    <PresentationItem presentationDataItem ={d} />
+                )
+            })
+        }
+
 		
 		return(
 			<div className = "presentation-container">
 				<table>
-				  <th className = "table-row" colSpan = {8}>Distributor List</th>
+				  <th className = "table-row" colSpan = {9}>Distributor List</th>
 				  <tr className = "table-row table-header">
+                    <td className = "table-col">Actions</td>
 				    <td className = "table-col">Main Distributor</td>
 				    <td className = "table-col">Location</td>
 				    <td className = "table-col">Sources</td>
@@ -50,7 +54,7 @@ var Presentation = React.createClass({
 				  </tr>
 				  {data}
 				</table>
-				<Link to = "/" ><div className= "generic-button">Home</div></Link>
+				<Link to = "/home/distributor/create" ><div className= "generic-button">Create New Distributor</div></Link>
 			</div>
 		);
 	}

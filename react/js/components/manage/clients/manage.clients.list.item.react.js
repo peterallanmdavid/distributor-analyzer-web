@@ -41,14 +41,17 @@ var SourcesListItem = React.createClass({
 
 	render:function(){
 		var clientItem= this.props.clientItem;
+        var buttons = [];
+        if(this.props.isForm){
+            buttons.push(<div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length}</div>);
+            buttons.push(<div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-times"></i></div>);
+        }
 		return(
 			<div className = "client-item-container">
 				<div className = "client-item card-white">
 					<div className = "item-field">{clientItem.name}</div>
 					<div className = "item-field">{clientItem.owner}</div>
 					<div className = "item-field">{clientItem.location}</div>
-                    <div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length}</div>
-                    <div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-times"></i></div>
 				</div>
                 <Modal
                     showModal={this.state.showModal}

@@ -27,7 +27,8 @@ var SourcesForm = React.createClass({
 	},
 	propTypes: {
 		distAction: React.PropTypes.object,
-		addClient: React.PropTypes.func
+		addClient: React.PropTypes.func,
+        removeTestSamples: React.PropTypes.func
 	},
 	_changeQuantity:function(name, e){
 		value = e.target.value;
