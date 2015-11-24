@@ -88,8 +88,10 @@ var DistributorStore = Reflux.createStore({
     //Action listeners
     onSaveData:function(){
         var data = this.distributor.distributorForm;
-        var allDist = this.distributor.allDistributors
+        var allDist = this.distributor.allDistributors;
+        var isUpdate=false;
         if(typeof data.id!=="undefined"){
+            isUpdate=true;
             for(var i=0; i<allDist.length;i++){
                 if(allDist[i].id.toString()===data.id.toString()){
                     allDist[i]=data;
@@ -104,6 +106,11 @@ var DistributorStore = Reflux.createStore({
 
         this.clearDistributorForm();
         this.trigger(this.distributor);
+        if(isUpdate){
+            window.location="#/home/distributor/d/"+data.id;
+        }else{
+            window.location="#/home/distributor";
+        }
     },
     onSetDistributorForm:function(name, value){
         this.distributor.distributorForm[name]=value;

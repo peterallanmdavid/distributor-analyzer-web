@@ -18,7 +18,6 @@ var Manage = React.createClass({
 	},
 	_saveData:function(){
 		this.props.distActions.saveData();
-		window.location="#/home/distributor"
 	},
 	_onChangeValue:function(name, e){
 		var value = e.target.value;
