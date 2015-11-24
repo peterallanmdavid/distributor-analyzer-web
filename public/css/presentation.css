@@ -1,28 +1,43 @@
-.presentation-container table {
-  background: #fff;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+.presentation-container {
+  background-color: white;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  margin-bottom: 14px;
-  padding-left: 0;
+  float: left;
   width: 100%;
+}
+.presentation-container .button-container {
+  float: left;
+  width: 100%;
+  padding: 10px;
+}
+.presentation-container .presentation-table {
+  float: left;
+  width: 100%;
+}
+.presentation-container .main {
+  display: block!important;
+  padding: 10px;
 }
 .presentation-container .table-row {
   overflow: hidden;
-  border-top: 1px solid #dfdfdf;
-  padding: 15px 21px 15px 27px;
+  float: left;
+  width: 100%;
+  display: inline-flex;
+  text-align: center;
+  border-bottom: 1px solid #dfdfdf;
 }
 .presentation-container .table-col {
   overflow: hidden;
   border-right: 1px solid #dfdfdf;
-  padding: 15px 21px 15px 27px;
+  padding: 10px;
   text-align: center;
+  width: 10%;
 }
-.presentation-container .table-header > td {
-  font-weight: bold;
+.presentation-container .end {
+  border-right: 0;
 }
-.presentation-container .presentation-container > table > tbody > tr > th {
-  text-align: center;
+.presentation-container .fa {
+  margin-right: 5px;
 }
 .view-distributor {
   background-color: white;

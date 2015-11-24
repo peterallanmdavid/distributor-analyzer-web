@@ -5,13 +5,13 @@ var React = require('react')
 var SourcesForm = React.createClass({
 	getInitialState:function(){
 		return({
-            id:0,
+            id:"",
             name:"",
-			typeId: 0,
+			typeId: "",
 			typeName:"",
-			quantityDaily:0,
-			quantityWeekly:0,
-			quantityMonthly:0
+			quantityDaily:"",
+			quantityWeekly:"",
+			quantityMonthly:""
 			
 		})
 	},
@@ -43,6 +43,13 @@ var SourcesForm = React.createClass({
 			}
 		}
 		this.props.distActions.addSource(data);
+        this.setState({  id:0,
+            name:"",
+            typeId: 0,
+            typeName:"",
+            quantityDaily:0,
+            quantityWeekly:0,
+            quantityMonthly:0})
 	},
 
 	render:function(){
@@ -65,13 +72,13 @@ var SourcesForm = React.createClass({
 						/>
 					</div>
 					<div className = "input-field">
-						<input value= {this.state.quantityDaily} onChange ={this._changeQuantity.bind(null, "quantityDaily")}/>
+						<input placeHolder = "0" value= {this.state.quantityDaily} onChange ={this._changeQuantity.bind(null, "quantityDaily")}/>
 					</div>
 					<div className = "input-field">
-						<input value= {this.state.quantityWeekly} onChange ={this._changeQuantity.bind(null, "quantityWeekly")}/>
+						<input placeHolder = "0" value= {this.state.quantityWeekly} onChange ={this._changeQuantity.bind(null, "quantityWeekly")}/>
 					</div>
 					<div className = "input-field">
-						<input value= {this.state.quantityMonthly} onChange ={this._changeQuantity.bind(null, "quantityMonthly")}/>
+						<input placeHolder = "0" value= {this.state.quantityMonthly} onChange ={this._changeQuantity.bind(null, "quantityMonthly")}/>
 					</div>
 				</div>
 				<div className = "input-field action-buttons"> 

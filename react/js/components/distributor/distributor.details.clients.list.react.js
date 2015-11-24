@@ -10,7 +10,24 @@ var ClientsList = React.createClass({
     render: function () {
         var clients = this.props.clients;
         var _clients = [];
+        var heightValue=0;
         _.forEach(clients, function(d){
+            var tempHV;
+            switch(d.testSamples.length) {
+                case 0:
+                    tempHV = 85;
+                    break;
+                case 1:
+                    tempHV = 130;
+                    break;
+                case 2:
+                    tempHV = 175;
+                    break;
+                default:
+                    tempHV = 230;
+                    break;
+            }
+            heightValue= tempHV>heightValue?tempHV:heightValue;
             _clients.push(
                 <div className = "card-white clients-item ">
                     <div className = "info-card">
@@ -21,8 +38,12 @@ var ClientsList = React.createClass({
                     <TestSamples testSamples = {d.testSamples}/>
                 </div>);
         })
+        heightValue=heightValue.toString()+"px";
+        var styles = {
+            height:heightValue
+        }
         return (
-            <div className = "clients-list">
+            <div className = "clients-list" style={styles}>
                 {_clients}
             </div>
         )

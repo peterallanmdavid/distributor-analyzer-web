@@ -43,7 +43,7 @@ var SourcesListItem = React.createClass({
 		var clientItem= this.props.clientItem;
         var buttons = [];
         if(this.props.isForm){
-            buttons.push(<div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length}</div>);
+            buttons.push(<div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length} view list</div>);
             buttons.push(<div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-times"></i></div>);
         }
 		return(

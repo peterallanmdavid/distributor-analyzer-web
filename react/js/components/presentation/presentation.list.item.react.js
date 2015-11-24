@@ -78,27 +78,27 @@ var PresentationListItem = React.createClass({
         var d = this.props.presentationDataItem;
         return (
 
-                <tr className = "table-row">
-                    <td className = "table-col"><ActionButtons id = {d.id.toString()}/></td>
-                    <td className = "table-col">{d.name}</td>
-                    <td className = "table-col">{d.location}</td>
-                    <td className = "table-col">{d.vehicles.length} <GenericButton
+                <div className = "table-row">
+                    <div className = "table-col"><ActionButtons id = {d.id.toString()}/></div>
+                    <div className = "table-col">{d.name}</div>
+                    <div className = "table-col">{d.location}</div>
+                    <div className = "table-col">{d.vehicles.length} <GenericButton
                         buttonText ="view details"
                         onClickHandler = {this._viewVehiclesDetails}
-                    /></td>
-                    <td className = "table-col">{d.sources.length} <GenericButton
+                    /></div>
+                    <div className = "table-col">{d.sources.length} <GenericButton
                         buttonText ="view details"
                         onClickHandler = {this._viewSourcesDetails}
-                    /></td>
-                    <td className = "table-col">{d.clients.length} <GenericButton
+                    /></div>
+                    <div className = "table-col">{d.clients.length} <GenericButton
                         buttonText ="view details"
                         onClickHandler = {this._viewClientDetails}
-                    /></td>
-                    <td className = "table-col">{d.completedInvestigation}</td>
-                    <td className = "table-col">{d.currentIntelligence}</td>
-                    <td className = "table-col">{d.pendingLeads}</td>
-                    <td className = "table-col">{d.taskingLeads}</td>
-                    <td>
+                    /></div>
+                    <div className = "table-col">{d.completedInvestigation}</div>
+                    <div className = "table-col">{d.currentIntelligence}</div>
+                    <div className = "table-col">{d.pendingLeads}</div>
+                    <div className = "table-col end">{d.taskingLeads}</div>
+                    <div>
                         <Modal
                             showModal={this.state.showModal}
                             closeModal={this._closeModal}
@@ -111,8 +111,8 @@ var PresentationListItem = React.createClass({
                             loaderText={this.state.loaderText}
                             handleOnEnter = {false}
                         />
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
         )
     }

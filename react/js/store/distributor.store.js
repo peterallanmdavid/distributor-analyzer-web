@@ -71,13 +71,37 @@ var DistributorStore = Reflux.createStore({
                 vehicles:[]
         }
     },
+/*    saveDistributorToFile:function(data){
+        var txtFile = "/assets/distributor.text";
+        var file = new File([],txtFile);
+        file.open("r")
+        while (!file.eof) {
+            // read each line of text
+            console.log(file.readln())
+        }
+
+    },*/
+
+
 
 
     //Action listeners
     onSaveData:function(){
         var data = this.distributor.distributorForm;
-        data.id = CommonUtils.getCurrentId(this.distributor.allDistributors);
-        this.distributor.allDistributors.push(data);
+        var allDist = this.distributor.allDistributors
+        if(typeof data.id!=="undefined"){
+            for(var i=0; i<allDist.length;i++){
+                if(allDist[i].id.toString()===data.id.toString()){
+                    allDist[i]=data;
+                    break;
+                }
+            }
+
+        }else{
+            data.id = CommonUtils.getCurrentId(allDist);
+            this.distributor.allDistributors.push(data);
+        }
+
         this.clearDistributorForm();
         this.trigger(this.distributor);
     },

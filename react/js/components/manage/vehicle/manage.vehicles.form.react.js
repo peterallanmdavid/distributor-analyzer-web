@@ -27,6 +27,10 @@ var VehiclesForm = React.createClass({
             plateNumber:  this.state.plateNumber,
             owner: this.state.owner
         }
+        this.setState({ "id": 0,
+            "model": "",
+            "plateNumber": "",
+            "owner": ""});
         this.props.distActions.addVehicle(data);
     },
 
@@ -38,10 +42,10 @@ var VehiclesForm = React.createClass({
                         <input className = "ta-left" value= {this.state.model} onChange ={this._onChangeHander.bind(null, "model")}/>
                     </div>
                     <div className = "input-field">
-                        <input value= {this.state.plateNumber} onChange ={this._onChangeHander.bind(null, "plateNumber")}/>
+                        <input className = "ta-left" value= {this.state.plateNumber} onChange ={this._onChangeHander.bind(null, "plateNumber")}/>
                     </div>
                     <div className = "input-field">
-                        <input value= {this.state.owner} onChange ={this._onChangeHander.bind(null, "owner")}/>
+                        <input className = "ta-left" value= {this.state.owner} onChange ={this._onChangeHander.bind(null, "owner")}/>
                     </div>
                 </div>
                 <div className = "input-field action-buttons">

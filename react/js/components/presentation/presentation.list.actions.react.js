@@ -8,11 +8,11 @@ var PresentationActionList= React.createClass({
     },
 
     render: function () {
-        var viewButtonText =(<div><i className="fa fa-list"></i>View</div>);
-        var removeButtonText =(<div><i className="fa fa-times-circle"></i>Remove</div>);
+        var viewButtonText =(<div className = "inline-flex"><i className="fa fa-list"></i>View</div>);
+        var removeButtonText =(<div className = "inline-flex"><i className="fa fa-times-circle"></i>Remove</div>);
         var viewUrl = "#/home/distributor/d/"+ this.props.id
         return (
-            <div>
+            <div className = "presentation-buttons">
                 <GenericButton
                     buttonText ={viewButtonText}
                     enableLink = {true}

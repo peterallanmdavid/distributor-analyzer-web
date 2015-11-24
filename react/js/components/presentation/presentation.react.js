@@ -39,23 +39,23 @@ var Presentation = React.createClass({
 		
 		return(
 			<div className = "presentation-container">
-				<table>
-				  <th className = "table-row" colSpan = {10}>Distributor List</th>
-				  <tr className = "table-row table-header">
-                    <td className = "table-col">Actions</td>
-				    <td className = "table-col">Main Distributor</td>
-				    <td className = "table-col">Location</td>
-                    <td className = "table-col">Vehicles</td>
-				    <td className = "table-col">Sources</td>
-				    <td className = "table-col">Clients</td>
-				    <td className = "table-col">Completed Investigation</td>
-				    <td className = "table-col">Current Intelligence</td>
-				    <td className = "table-col">Pending Leads</td>
-				    <td className = "table-col">Tasking Leads</td>
-				  </tr>
+				<div className = "presentation-table">
+				  <div className = "table-row main">Distributor List</div>
+				  <div className = "table-row table-header">
+                    <div className = "table-col">Actions</div>
+				    <div className = "table-col">Main Distributor</div>
+				    <div className = "table-col">Location</div>
+                    <div className = "table-col">Vehicles</div>
+				    <div className = "table-col">Sources</div>
+				    <div className = "table-col">Clients</div>
+				    <div className = "table-col">Completed Investigation</div>
+				    <div className = "table-col">Current Intelligence</div>
+				    <div className = "table-col">Pending Leads</div>
+				    <div className = "table-col end">Tasking Leads</div>
+				  </div>
 				  {data}
-				</table>
-				<Link to = "/home/distributor/create" ><div className= "generic-button">Create New Distributor</div></Link>
+				</div>
+				<div className = "button-container"><Link to = "/home/distributor/create" ><div className= "generic-button">Create New Distributor</div></Link></div>
 			</div>
 		);
 	}
