@@ -6,9 +6,11 @@ var DistributorAction = Reflux.createActions({
     'saveData':{},
     'addSource':{},
     'addClient':{},
-    'removeSource':{},
+    'addVehicle':{},
     'setDistributorForm':{},
     'removeClient':{},
+    'removeSource':{},
+    'removeVehicle':{},
     'removeTestSamples':{}
 
 });

@@ -11,10 +11,8 @@ var Clients = React.createClass({
 		})
 	},
 	propTypes:{
-		addClient:React.PropTypes.func,
-		clients: React.PropTypes.array,
-        removeClient: React.PropTypes.func,
-        removeTestSamples: React.PropTypes.func
+        distActions:React.PropTypes.func,
+		clients: React.PropTypes.array
 	},
 	_closeForm:function(){
 		this.setState({isAdding:false});
@@ -31,14 +29,13 @@ var Clients = React.createClass({
 					clients = {clients}
 					showForm = {this._showForm}
 					isAdding = {this.state.isAdding}
-                    removeClient = {this.props.removeClient}
+                    removeClient = {this.props.distActions.removeClient}
+                    isForm = {true}
 				/>
 				<div className = {addClientsClass}>
 				<ClientsForm
-					distAction = {this.props.distAction}
-					addClient = {this.props.addClient}
+                    distActions = {this.props.distActions}
 					closeForm = {this._closeForm}
-                    removeTestSamples = {this.props.removeTestSamples}
 				/>
 				</div>
 			</div>

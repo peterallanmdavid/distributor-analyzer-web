@@ -8,7 +8,8 @@ var ClientList = React.createClass({
 	propTypes:{
 		clients:React.PropTypes.array,
 		showForm:React.PropTypes.func,
-		isAdding: React.PropTypes.bool
+		isAdding: React.PropTypes.bool,
+        isForm: React.PropTypes.bool
 	},
 	render:function(){
         var that =this;
@@ -20,11 +21,16 @@ var ClientList = React.createClass({
                     key = {d.id}
                     clientItem = {d}
                     removeClient = {that.props.removeClient}
+                    isForm = {that.props.isForm}
 
                 />
             );
 		});
 		var addButtonClass = classnames("add-button card-white",{"hidden":this.props.isAdding})
+        var addBUtton = <span></span>;
+        if(this.props.isForm){
+            addBUtton =  <div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Client</div>
+        }
 		return(
 			<div>
 				<div className = "client-item card">
@@ -34,7 +40,7 @@ var ClientList = React.createClass({
 					<div className = "item-field"><label>Test Sample</label></div>
 				</div>
 				{clientItem}
-				<div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Client</div>
+                {addBUtton}
 			</div>
 		);
 	}

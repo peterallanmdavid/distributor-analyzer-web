@@ -26,9 +26,7 @@ var SourcesForm = React.createClass({
 		});
 	},
 	propTypes: {
-		distAction: React.PropTypes.object,
-		addClient: React.PropTypes.func,
-        removeTestSamples: React.PropTypes.func
+		distActions: React.PropTypes.object
 	},
 	_changeQuantity:function(name, e){
 		value = e.target.value;
@@ -36,14 +34,14 @@ var SourcesForm = React.createClass({
         newState[name] = value;
 		this.setState(newState);
 	},
-	_saveSource:function(){
-		this.props.addClient(this.state);
-        this.setState({
-            name:"",
-            owner:"",
-            location:"",
-            testSamples:[]
-        })
+	_saveClient:function(){
+		var data = {
+            name:this.state.name,
+            owner:this.state.owner,
+            location:this.state.location,
+            testSamples:this.state.testSamples
+        }
+        this.props.distActions.addClient(data);
 	},
     _closeModal:function(){
         this.setState({showModal:false})
@@ -61,10 +59,9 @@ var SourcesForm = React.createClass({
         })
     },
     _addTestSample:function(data){
-        var currentTestSample = _.clone(this.state.testSamples);
-        data.id = CommonUtils.getCurrentId(currentTestSample);
-        currentTestSample.push(data)
-        this.setState({testSamples:currentTestSample});
+        var ts = _.clone(this.state.testSamples);
+        ts.push(data)
+        this.setState({testSamples:ts})
     },
 
 	render:function(){
@@ -90,7 +87,7 @@ var SourcesForm = React.createClass({
                     {testSampleCount}
                 </div>
 				<div className = "input-field action-buttons">
-                    <i onClick = {this._saveSource} className="fa fa-check-circle"></i>
+                    <i onClick = {this._saveClient} className="fa fa-check-circle"></i>
 					<i onClick = {this.props.closeForm} className="fa fa-times-circle"></i>
 				</div>
 

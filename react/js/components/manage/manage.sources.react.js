@@ -12,13 +12,8 @@ var Sources = React.createClass({
 	},
 	propTypes:{
 		sourceTypes: React.PropTypes.object,
-		distAction: React.PropTypes.object,
-		sources: React.PropTypes.array,
-		removeSource: React.PropTypes.func
-	},
-	_toggleSourceForm:function(){
-		var currState = this.state.isAdding;
-		this.setState({isAdding:!currState});
+        distActions: React.PropTypes.object,
+		sources: React.PropTypes.array
 	},
 	_closeForm:function(){
 		this.setState({isAdding:false});
@@ -33,15 +28,14 @@ var Sources = React.createClass({
 			<div>
 				<SourceList 
 					sources = {sources} 
-					removeSource = {this.props.removeSource}
+					removeSource = {this.props.distActions.removeSource}
 					showForm = {this._showForm}
 					isAdding = {this.state.isAdding}
 				/>
 				<div className = {addSourceClass}>
 					<SourceForm
 						sourceTypes = {this.props.sourceTypes}
-						distAction = {this.props.distAction}
-						addSource = {this.props.addSource}
+                        distActions = {this.props.distActions}
 						closeForm = {this._closeForm}
 					/>
 				</div>

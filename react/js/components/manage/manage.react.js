@@ -1,13 +1,11 @@
 var React = require('react')
 	, Reflux = require('reflux')
-	, DistStore = require('../../store/distributor.store')
-	, DistAction = require('../../action/distributor.action')
 	, ManageSources = require('./manage.sources.react')
 	, ManageClients = require('./manage.clients.react')
+    , ManageVehicles = require('./manage.vehicles.react')
 	, _ = require('lodash')
 	, Router = require('react-router')
     , Link = Router.Link
-	, CommonUtils = require('../../utils/common.utils.js') 
 	;
 
 
@@ -26,7 +24,7 @@ var Manage = React.createClass({
 		var value = e.target.value;
 	 	this.props.distActions.setDistributorForm(name, value);
 	},
-	_addSource:function(data) {
+	/*_addSource:function(data) {
 		this.props.distActions.addSource(data);
 	},
 	_addClient:function(data){
@@ -39,8 +37,8 @@ var Manage = React.createClass({
         this.props.distActions.removeClient(id);
     },
     _removeTestSamples:function(id){
-        this.props.distActions.removeTestSamples(id);
-    },
+        this.props.distActions.testsamplesremoveTestSamples(id);
+    },*/
 	render:function(){
 		var disData = this.props.distributorForm;
 
@@ -56,24 +54,26 @@ var Manage = React.createClass({
 						<label>Address</label>
 						<div><input value = {disData.location} onChange = {this._onChangeValue.bind(null, "location")}/></div>
 					</li>
+                    <li>
+                        <label className = "label-multiple-value">Vehicles</label>
+                        <ManageVehicles
+                            distActions = {this.props.distActions}
+                            vehicles= {disData.vehicles}
+                        />
+                    </li>
 					<li>
 						<label className = "label-multiple-value">Sources</label>
 						<ManageSources
-							 distAction = {this.props.distActions}
+                             distActions = {this.props.distActions}
 							 sourceTypes = {this.props.sourceTypes}
-							 addSource = {this._addSource}
-							 removeSource = {this._removeSource}
 							 sources= {disData.sources}
 						/>
 					</li>
 					<li>
 						<label className = "label-multiple-value">Clients</label>
 						<ManageClients
-							 distAction = {DistAction}
-							 addClient = {this._addClient}
+                             distActions = {this.props.distActions}
 							 clients= {disData.clients}
-                             removeClient = {this._removeClient}
-                             removeTestSamples = {this._removeTestSamples}
 						/>
 					</li>
 				    <li>

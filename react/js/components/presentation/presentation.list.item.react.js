@@ -2,6 +2,8 @@ var React = require('react')
     , GenericButton = require('../common/generic.button.react')
     , Modal = require('../common/generic.modal.react')
     , SourcesList = require('../manage/sources/manage.sources.list.react')
+    , ClientList = require('../manage/clients/manage.clients.list.react')
+    , VehicleList = require('../manage/vehicle/manage.vehicle.list.react')
     , ActionButtons = require('./presentation.list.actions.react')
     ;
 
@@ -37,6 +39,38 @@ var PresentationListItem = React.createClass({
 
         })
     },
+    _viewClientDetails:function(){
+        console.log("opening")
+        var body = <ClientList
+            clients = {this.props.presentationDataItem.clients}
+            removeClients = {function(){}}
+            isForm = {false}
+        />
+        this.setState({
+            showModal: true,
+            confirmMethod: function(){},
+            confirmParams: {},
+            bodyText:{body},
+            title:''
+
+        })
+    },
+    _viewVehiclesDetails:function(){
+        console.log("opening")
+        var body = <VehicleList
+            vehicles = {this.props.presentationDataItem.vehicles}
+            removeVehicles = {function(){}}
+            isForm = {false}
+        />
+        this.setState({
+            showModal: true,
+            confirmMethod: function(){},
+            confirmParams: {},
+            bodyText:{body},
+            title:''
+
+        })
+    },
     _closeModal:function(){
         this.setState({showModal:false})
     },
@@ -48,11 +82,18 @@ var PresentationListItem = React.createClass({
                     <td className = "table-col"><ActionButtons id = {d.id.toString()}/></td>
                     <td className = "table-col">{d.name}</td>
                     <td className = "table-col">{d.location}</td>
+                    <td className = "table-col">{d.vehicles.length} <GenericButton
+                        buttonText ="view details"
+                        onClickHandler = {this._viewVehiclesDetails}
+                    /></td>
                     <td className = "table-col">{d.sources.length} <GenericButton
                         buttonText ="view details"
                         onClickHandler = {this._viewSourcesDetails}
                     /></td>
-                    <td className = "table-col">{d.clients.length}</td>
+                    <td className = "table-col">{d.clients.length} <GenericButton
+                        buttonText ="view details"
+                        onClickHandler = {this._viewClientDetails}
+                    /></td>
                     <td className = "table-col">{d.completedInvestigation}</td>
                     <td className = "table-col">{d.currentIntelligence}</td>
                     <td className = "table-col">{d.pendingLeads}</td>

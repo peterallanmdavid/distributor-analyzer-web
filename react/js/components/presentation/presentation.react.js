@@ -40,11 +40,12 @@ var Presentation = React.createClass({
 		return(
 			<div className = "presentation-container">
 				<table>
-				  <th className = "table-row" colSpan = {9}>Distributor List</th>
+				  <th className = "table-row" colSpan = {10}>Distributor List</th>
 				  <tr className = "table-row table-header">
                     <td className = "table-col">Actions</td>
 				    <td className = "table-col">Main Distributor</td>
 				    <td className = "table-col">Location</td>
+                    <td className = "table-col">Vehicles</td>
 				    <td className = "table-col">Sources</td>
 				    <td className = "table-col">Clients</td>
 				    <td className = "table-col">Completed Investigation</td>

@@ -22,6 +22,7 @@ var DistributorStore = Reflux.createStore({
             taskingLeads:"",
             modifiedData:"",
             sources:[],
+            vehicles:[],
             clients:[]
         },
         currentDistributor:{},
@@ -66,7 +67,8 @@ var DistributorStore = Reflux.createStore({
                 taskingLeads:"",
                 modifiedData:"",
                 sources:[],
-                clients:[]
+                clients:[],
+                vehicles:[]
         }
     },
 
@@ -95,6 +97,11 @@ var DistributorStore = Reflux.createStore({
         this.distributor.distributorForm.clients.push(data);
         this.trigger(this.distributor);
     },
+    onAddVehicle:function(data){
+        data.id = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
+        this.distributor.distributorForm.vehicles.push(data);
+        this.trigger(this.distributor);
+    },
     onRemoveSource: function(id){
         _.remove(this.distributor.distributorForm.sources, function(d){
             return d.id.toString()===id.toString();
@@ -103,6 +110,12 @@ var DistributorStore = Reflux.createStore({
     },
     onRemoveClient: function(id){
         _.remove(this.distributor.distributorForm.clients, function(d){
+            return d.id.toString()===id.toString();
+        })
+        this.trigger(this.distributor);
+    },
+    onRemoveVehicle:function(id){
+        _.remove(this.distributor.distributorForm.vehicles, function(d){
             return d.id.toString()===id.toString();
         })
         this.trigger(this.distributor);

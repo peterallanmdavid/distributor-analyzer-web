@@ -52,6 +52,7 @@ var SourcesListItem = React.createClass({
 					<div className = "item-field">{clientItem.name}</div>
 					<div className = "item-field">{clientItem.owner}</div>
 					<div className = "item-field">{clientItem.location}</div>
+                    {buttons}
 				</div>
                 <Modal
                     showModal={this.state.showModal}

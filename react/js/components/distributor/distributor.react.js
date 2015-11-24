@@ -22,11 +22,17 @@ var Distributor= React.createClass({
             saveData:function(){
                 DistributorAction.saveData();
             },
+            addVehicle:function(data){
+                DistributorAction.addVehicle(data);
+            },
             addSource:function(data){
                 DistributorAction.addSource(data);
             },
             addClient:function(data){
                 DistributorAction.addClient(data);
+            },
+            removeVehicle:function(data){
+                DistributorAction.removeVehicle(data);
             },
             removeSource:function(id){
                 DistributorAction.removeSource(id);

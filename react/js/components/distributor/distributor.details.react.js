@@ -1,6 +1,7 @@
 var React = require('react')
     , ClientList = require('./distributor.details.clients.list.react')
     , SourceList = require('../manage/sources/manage.sources.list.react')
+    , VehicleList = require('../manage/vehicle/manage.vehicle.list.react')
     , GenericButtons = require('../common/generic.button.react')
     ;
 
@@ -31,6 +32,14 @@ var DistributorDetails = React.createClass({
                         />
                     </div>
 
+                </div>
+                <div className = "row-field list-fields">
+                    <div className = "text-label-header">Vehicles</div>
+                    <VehicleList
+                        vehicles = {d.vehicles}
+                        removeVehicle = {function(){}}
+                        isForm = {false}
+                    />
                 </div>
                 <div className = "row-field list-fields">
                     <div className = "text-label-header">Sources</div>

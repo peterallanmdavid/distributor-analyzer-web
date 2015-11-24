@@ -16,9 +16,8 @@ var SourcesForm = React.createClass({
 		})
 	},
 	propTypes: {
-		distAction: React.PropTypes.object,
+        distActions: React.PropTypes.object,
 		sourceTypes: React.PropTypes.array,
-		addSource: React.PropTypes.func,
 		closeForm:React.PropTypes.func
 	},
 	_sourceTypeSelected:function(name, e, value_name){
@@ -43,7 +42,7 @@ var SourcesForm = React.createClass({
 				monthly:this.state.quantityMonthly
 			}
 		}
-		this.props.addSource(data);
+		this.props.distActions.addSource(data);
 	},
 
 	render:function(){
