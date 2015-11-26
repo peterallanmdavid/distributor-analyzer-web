@@ -20,7 +20,7 @@ var Distributor= React.createClass({
                 DistributorAction.setDistributorForm(name,value);
             },
             saveData:function(){
-                DistributorAction.saveData();
+                DistributorAction.saveDistributor();
             },
             addVehicle:function(data){
                 DistributorAction.addVehicle(data);

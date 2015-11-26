@@ -1,22 +1,27 @@
 var React = require('react')
     , _ = require('lodash')
+    , TestSampleItems = require('./manage.clients.testsamples.item.react')
     ;
 
 var TestSamples = React.createClass({
     propTypes:{
-      testSamples: React.PropTypes.array
+        testSamples: React.PropTypes.array,
+        isForm: React.PropTypes.bool
+    },
+    getDefaultProps:function(){
+        return({
+            isForm: false,
+            removeTestSample:function(){}
+
+        })
     },
     render: function () {
         var ts = this.props.testSamples
         var tsItems = [];
+        var that = this;
         _.forEach(ts, function(d){
             tsItems.push(
-                <div className = "client-item-container">
-                    <div className = "client-item test-sample-row card-white">
-                        <div className = "item-field">{d.name}</div>
-                        <div className = "item-field">{d.capacity}</div>
-                    </div>
-                </div>
+                <TestSampleItems item = {d} removeTestSample = {that.props.removeTestSample} />
             );
         });
         return (

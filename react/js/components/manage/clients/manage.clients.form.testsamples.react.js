@@ -1,11 +1,13 @@
 var React = require('react')
     , _ = require('lodash')
     , TestSamplesList = require('./manage.clients.testsamples.react')
+    , CommonUtils = require('../../../utils/common.utils')
     ;
 
 var TestSamplesForm = React.createClass({
     getInitialState:function(){
         return({
+            id:"",
             name:"",
             capacity:"",
             testSamples:[]
@@ -29,15 +31,16 @@ var TestSamplesForm = React.createClass({
         this.setState(newState);
     },
     _onAddTestSamples:function(){
-        this.props.addTestSamples({name:this.state.name, capacity:this.state.capacity});
+        var id=CommonUtils.getCurrentId(this.state.testSamples)
+        this.props.addTestSamples({id:id ,name:this.state.name, capacity:this.state.capacity});
         var ts =[];
         if(ts.length===0 && this.props.testSamples.length>0){
             ts = this.props.testSamples;
         }else{
             ts = _.clone(this.state.testSamples)
         }
-        ts.push({name:this.state.name, capacity:this.state.capacity});
-        this.setState({testSamples:ts, name:"" ,capacity:""});
+        ts.push({id:id ,name:this.state.name, capacity:this.state.capacity});
+        this.setState({testSamples:ts, name:"" ,capacity:"", id:""});
         React.findDOMNode(this.refs.name).focus();
     },
     _handleKeyDown:function(event){
@@ -52,6 +55,7 @@ var TestSamplesForm = React.createClass({
             <div className = "test-sample">
                 <TestSamplesList
                     testSamples = {ts}
+                    removeTestSample = {this.props.removeTestSample}
                 />
 
                 <div onKeyDown = {this._handleKeyDown}className = "client-form test-sample-row card-white">

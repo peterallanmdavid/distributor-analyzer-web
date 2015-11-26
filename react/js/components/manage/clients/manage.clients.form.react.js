@@ -3,8 +3,6 @@ var React = require('react')
     , Modal = require('../../common/generic.modal.react')
     , TestSampleForm = require('./manage.clients.form.testsamples.react')
     , _ = require('lodash')
-    , CommonUtils = require('../../../utils/common.utils')
-
 	; 
 
 var SourcesForm = React.createClass({
@@ -49,6 +47,7 @@ var SourcesForm = React.createClass({
     _launchTestSamplesForm:function(){
         var addTestSampleForm = (<TestSampleForm
             addTestSamples = {this._addTestSample}
+            removeTestSample = {this._removeTestSample}
             testSamples = {this.state.testSamples}
         />)
         this.setState({
@@ -61,7 +60,13 @@ var SourcesForm = React.createClass({
     _addTestSample:function(data){
         var ts = _.clone(this.state.testSamples);
         ts.push(data)
+
         this.setState({testSamples:ts})
+    },
+    _removeTestSample:function(id){
+        _.remove(this.state.testSamples, function(d){
+            return d.id.toString()===id.toString()
+        })
     },
 
 	render:function(){

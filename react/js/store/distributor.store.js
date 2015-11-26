@@ -4,12 +4,14 @@ var React = require('react')
     , _ = require('lodash')
     , CommonUtils = require('../utils/common.utils.js')
     , RouteStore = require('./route.store')
+    , WebUtils = require('../utils/webutils')
     ;
 
 var DistributorStore = Reflux.createStore({
     listenables: [DistAction],
     init: function() {
         this.listenTo(RouteStore, this.setRoute);
+        DistAction.fetchAllDistributors();
     },
     distributor:{
         allDistributors:[],
@@ -86,7 +88,7 @@ var DistributorStore = Reflux.createStore({
 
 
     //Action listeners
-    onSaveData:function(){
+    onSaveDistributor:function(){
         var data = this.distributor.distributorForm;
         var allDist = this.distributor.allDistributors;
         var isUpdate=false;
@@ -111,6 +113,14 @@ var DistributorStore = Reflux.createStore({
         }else{
             window.location="#/home/distributor";
         }
+        WebUtils.saveDistributor(data,DistAction.saveDistributor.completed, DistAction.saveDistributor.failed )
+    },
+
+    onSaveDistributorCompleted:function(data){
+
+    },
+    onSaveDistributorFailed:function(data){
+
     },
     onSetDistributorForm:function(name, value){
         this.distributor.distributorForm[name]=value;
@@ -159,6 +169,15 @@ var DistributorStore = Reflux.createStore({
             return d.id.toString()===id.toString();
         })
         this.trigger(this.distributor);
+    },
+    onFetchAllDistributors:function(){
+        WebUtils.fetchAllDistributors(DistAction.fetchAllDistributors.completed, DistAction.fetchAllDistributors.failed);
+    },
+    onFetchAllDistributorsCompleted:function(data){
+        debugger;
+    },
+    onFetchAllDistributorsFailed:function(data){
+        debugger;
     }
 
 });

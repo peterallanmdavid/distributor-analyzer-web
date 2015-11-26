@@ -3,7 +3,7 @@ var Reflux = require('reflux')
 
 
 var DistributorAction = Reflux.createActions({
-    'saveData':{},
+    'saveDistributor':{asyncResult: true},
     'addSource':{},
     'addClient':{},
     'addVehicle':{},
@@ -11,7 +11,8 @@ var DistributorAction = Reflux.createActions({
     'removeClient':{},
     'removeSource':{},
     'removeVehicle':{},
-    'removeTestSamples':{}
+    'removeTestSamples':{},
+    'fetchAllDistributors':{asyncResult: true}
 
 });
 module.exports = DistributorAction;
