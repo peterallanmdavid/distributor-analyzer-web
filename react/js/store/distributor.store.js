@@ -16,6 +16,7 @@ var DistributorStore = Reflux.createStore({
     distributor:{
         allDistributors:[],
         distributorForm: {
+            id:"",
             name:"",
             location:"",
             completedInvestigation:"",
@@ -113,7 +114,7 @@ var DistributorStore = Reflux.createStore({
         }else{
             window.location="#/home/distributor";
         }
-        WebUtils.saveDistributor(data,DistAction.saveDistributor.completed, DistAction.saveDistributor.failed )
+       // WebUtils.saveDistributor(data,DistAction.saveDistributor.completed, DistAction.saveDistributor.failed )
     },
 
     onSaveDistributorCompleted:function(data){
@@ -171,10 +172,12 @@ var DistributorStore = Reflux.createStore({
         this.trigger(this.distributor);
     },
     onFetchAllDistributors:function(){
-        WebUtils.fetchAllDistributors(DistAction.fetchAllDistributors.completed, DistAction.fetchAllDistributors.failed);
+       WebUtils.fetchAllDistributors(DistAction.fetchAllDistributors.completed, DistAction.fetchAllDistributors.failed);
     },
     onFetchAllDistributorsCompleted:function(data){
-        debugger;
+        var results = data.response.response;
+        this.distributor.allDistributors = results;
+        this.trigger(this.distributor);
     },
     onFetchAllDistributorsFailed:function(data){
         debugger;

@@ -13,6 +13,8 @@ var React = require('react')
   , RouteAction = require('./action/route.action')
   , Distributor = require('./components/distributor/distributor.react')
   , DistributorDetails = require('./components/distributor/distributor.details.react')
+  , FlowChart = require('./components/flowchart/flowchart.react')
+
   ;
 
 var routes = (
@@ -22,9 +24,10 @@ var routes = (
             <DefaultRoute handler={HomeContent}/>
             <Route name = "distributor" handler = {Distributor}>
                 <DefaultRoute handler={Presentation}/>
-                <Route name = "distributordetails" path = "d/:distributorId" handler = {DistributorDetails} />
+                <Route name = "distributordetails" path = "d/:distributorId" handler = {DistributorDetails}> </Route>
                 <Route name = "editdistributor" path = "d/:distributorId/edit" handler = {Manage} />
                 <Route name = "createdistributor" path = "create" handler = {Manage} />
+                <Route name = "flowchart" path = "flowchart" handler = {FlowChart} />
             </Route>
       </Route>
     </Route>
