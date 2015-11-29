@@ -13,10 +13,4 @@ composer.phar
 error.log
 /nbproject/private/
 /nbproject
-*~
-*.php~
-public/css/backend/
-public/css/bootstrap/
-public/css/frontend/
-public/css/gaztronaut/
 
