@@ -1,0 +1,28 @@
+.flowchart-container .generic-btn {
+  margin-left: 10px;
+  color: black;
+  float: left;
+  width: 150px;
+  padding: 5px;
+  background: #ccc;
+  border: 1px solid #C8C8C8;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.flowchart-container .link-chart {
+  float: left;
+  width: 100%;
+}
+.flowchart-container .link-chart .orgChart {
+  overflow-x: scroll;
+}
+.flowchart-container .link-chart div.orgChart div.node {
+  width: 120px;
+  height: 100px;
+}
+.flowchart-container .link-chart .dist-name {
+  font-weight: bold;
+}
+.flowchart-container .link-chart div.orgChart h2 {
+  padding: 10px;
+  width: 100%;
+}

@@ -21,7 +21,11 @@ var SourcesListItem = React.createClass({
         removeClient: React.PropTypes.func
 	},
     _removeItem:function(){
-        this.props.removeClient(this.props.clientItem.id)
+        if(typeof this.props.clientItem.id!=="undefined"){
+            this.props.removeClient(this.props.clientItem.id, false)
+        }else{
+            this.props.removeClient(this.props.clientItem.tempId, true)
+        }
     },
     //////TODO to be refactores since this are also used in form
         _closeModal:function(){

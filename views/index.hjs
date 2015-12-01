@@ -10,9 +10,11 @@
     <link rel='stylesheet' href='/css/presentation.css' />
     <link rel='stylesheet' href='/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/css/font-awesome.min.css' />
+    <link rel='stylesheet' href='/css/flowchart.css' />
+    <link rel='stylesheet' href='/css/orgchart.css' />
   </head>
-  <body>    
+  <body>
     <div id="home"> </div>
-	<script src="js/bundle.js"></script>   
+	<script src="js/bundle.js"></script>
   </body>
 </html>

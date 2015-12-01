@@ -40,6 +40,9 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.no-side-menu {
+  margin-left: 20px !important;
+}
 .home-button {
   width: 200px;
   float: left;

@@ -23,21 +23,6 @@ var Manage = React.createClass({
 		var value = e.target.value;
 	 	this.props.distActions.setDistributorForm(name, value);
 	},
-	/*_addSource:function(data) {
-		this.props.distActions.addSource(data);
-	},
-	_addClient:function(data){
-		this.props.distActions.addClient(data);
-	},
-	_removeSource:function(id){
-        this.props.distActions.removeSource(id);
-	},
-    _removeClient:function(id){
-        this.props.distActions.removeClient(id);
-    },
-    _removeTestSamples:function(id){
-        this.props.distActions.testsamplesremoveTestSamples(id);
-    },*/
 	render:function(){
 		var disData = this.props.distributorForm;
 
@@ -46,7 +31,7 @@ var Manage = React.createClass({
 				<ul>
 					<li><b>Add New Entry</b></li>
 					<li>
-						<label>Main Distributor</label>
+						<label>Suspect/Target </label>
 						<div><input value = {disData.name} onChange = {this._onChangeValue.bind(null, "name")}/></div>
 					</li>
 				    <li>
@@ -61,7 +46,7 @@ var Manage = React.createClass({
                         />
                     </li>
 					<li>
-						<label className = "label-multiple-value">Sources</label>
+						<label className = "label-multiple-value">Supplier</label>
 						<ManageSources
                              distActions = {this.props.distActions}
 							 sourceTypes = {this.props.sourceTypes}
@@ -69,7 +54,7 @@ var Manage = React.createClass({
 						/>
 					</li>
 					<li>
-						<label className = "label-multiple-value">Clients</label>
+						<label className = "label-multiple-value"> Suspect's Customer</label>
 						<ManageClients
                              distActions = {this.props.distActions}
 							 clients= {disData.clients}

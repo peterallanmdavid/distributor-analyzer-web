@@ -16,7 +16,6 @@ var DistributorStore = Reflux.createStore({
     distributor:{
         allDistributors:[],
         distributorForm: {
-            id:"",
             name:"",
             location:"",
             completedInvestigation:"",
@@ -34,18 +33,18 @@ var DistributorStore = Reflux.createStore({
             {id: 2, name:"Factory"},
             {id: 3, name:"Retail Outlet"}
 
-        ]
+        ],
+        currentPage:""
     },
     setRoute: function(data){
+        this.currentPage = data.route.name;
         if(data.route && data.route.params && data.route.params.distributorId){
             //temporary way to get current distribtor while API is out
-            var allDist = this.distributor.allDistributors;
+/*            var allDist = this.distributor.allDistributors;
             var currentDistributor = _.find(allDist, function(d){
                 return(d.id.toString()===data.route.params.distributorId.toString())
-            })
-            this.distributor.distributorForm = _.clone(currentDistributor);
-            this.distributor.currentDistributor =currentDistributor;
-            this.trigger(this.distributor);
+            })*/
+            DistAction.getCurrentDistributor(data.route.params.distributorId);
         }
     },
     getAllDistributors:function(){
@@ -74,50 +73,35 @@ var DistributorStore = Reflux.createStore({
                 vehicles:[]
         }
     },
-/*    saveDistributorToFile:function(data){
-        var txtFile = "/assets/distributor.text";
-        var file = new File([],txtFile);
-        file.open("r")
-        while (!file.eof) {
-            // read each line of text
-            console.log(file.readln())
-        }
-
-    },*/
-
-
-
-
-    //Action listeners
     onSaveDistributor:function(){
-        var data = this.distributor.distributorForm;
-        var allDist = this.distributor.allDistributors;
-        var isUpdate=false;
-        if(typeof data.id!=="undefined"){
-            isUpdate=true;
-            for(var i=0; i<allDist.length;i++){
-                if(allDist[i].id.toString()===data.id.toString()){
-                    allDist[i]=data;
-                    break;
-                }
-            }
-
-        }else{
-            data.id = CommonUtils.getCurrentId(allDist);
-            this.distributor.allDistributors.push(data);
+        var data = {};
+        var request = this.distributor.distributorForm;
+        data = {
+            operation:"I1",
+            request:request
         }
 
-        this.clearDistributorForm();
-        this.trigger(this.distributor);
-        if(isUpdate){
-            window.location="#/home/distributor/d/"+data.id;
-        }else{
-            window.location="#/home/distributor";
-        }
-       // WebUtils.saveDistributor(data,DistAction.saveDistributor.completed, DistAction.saveDistributor.failed )
+
+       WebUtils.saveDistributor(data,DistAction.saveDistributor.completed, DistAction.saveDistributor.failed )
     },
 
     onSaveDistributorCompleted:function(data){
+        var allDist = this.distributor.allDistributors;
+       if(typeof data.request.request.id!=="undefined"){
+           for(var i=0; i<allDist.length;i++){
+               if(allDist[i].id.toString()===data.response.data.id.toString()){
+                   allDist[i]=data.response.data;
+                   break;
+               }
+           }
+           this.trigger(this.distributor)
+           window.location = "#/home/distributor/d/" + data.request.request.id;
+       }else{
+
+           allDist.push(data.response.data);
+           this.trigger(this.distributor);
+           window.location = "#/home/distributor";
+       }
 
     },
     onSaveDistributorFailed:function(data){
@@ -129,40 +113,53 @@ var DistributorStore = Reflux.createStore({
     },
     //will be used when api is ready
     onAddSource: function(data){
-        data.id = CommonUtils.getCurrentId(this.distributor.distributorForm.sources);
+        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.sources);
         this.distributor.distributorForm.sources.push(data);
         this.trigger(this.distributor);
 
     },
     onAddClient:function(data){
-        data.id = CommonUtils.getCurrentId(this.distributor.distributorForm.clients);
+        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.clients);
         this.distributor.distributorForm.clients.push(data);
         this.trigger(this.distributor);
     },
     onAddVehicle:function(data){
-        data.id = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
+        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
         this.distributor.distributorForm.vehicles.push(data);
         this.trigger(this.distributor);
     },
-    onRemoveSource: function(id){
+    onRemoveSource: function(id, isNew){
         _.remove(this.distributor.distributorForm.sources, function(d){
-            return d.id.toString()===id.toString();
+            if(isNew){
+                return d.tempId.toString()===id.toString();
+            }else{
+                return d.id.toString()===id.toString();
+            }
         })
         this.trigger(this.distributor);
     },
-    onRemoveClient: function(id){
+    onRemoveClient: function(id,isNew){
         _.remove(this.distributor.distributorForm.clients, function(d){
-            return d.id.toString()===id.toString();
+            if(isNew){
+                return d.tempId.toString()===id.toString();
+            }else{
+                return d.id.toString()===id.toString();
+            }
+
         })
         this.trigger(this.distributor);
     },
-    onRemoveVehicle:function(id){
+    onRemoveVehicle:function(id,isNew){
         _.remove(this.distributor.distributorForm.vehicles, function(d){
-            return d.id.toString()===id.toString();
+            if(isNew){
+                return d.tempId.toString()===id.toString();
+            }else{
+                return d.id.toString()===id.toString();
+            }
         })
         this.trigger(this.distributor);
     },
-    onRemoveTestSamples: function(clientId, id){
+    onRemoveTestSamples: function(clientId, id,isNew){
         var client = _.find(this.distributor.distributorForm.clients, function(d){
             return  d.id.toString()===clientId.toString();
         });
@@ -175,12 +172,25 @@ var DistributorStore = Reflux.createStore({
        WebUtils.fetchAllDistributors(DistAction.fetchAllDistributors.completed, DistAction.fetchAllDistributors.failed);
     },
     onFetchAllDistributorsCompleted:function(data){
-        var results = data.response.response;
+        var results = data.response.data;
         this.distributor.allDistributors = results;
         this.trigger(this.distributor);
     },
     onFetchAllDistributorsFailed:function(data){
-        debugger;
+        console.log("Failed Fetching From API for all distributors")
+    },
+    onGetCurrentDistributor:function(id){
+        WebUtils.getCurrentDistributor(id,DistAction.getCurrentDistributor.completed, DistAction.getCurrentDistributor.failed);
+    },
+    onGetCurrentDistributorCompleted:function(data){
+        var results = data.response.data;
+        this.distributor.currentDistributor = results;
+        this.distributor.distributorForm = _.clone(results);
+        this.distributor.currentDistributor =_.clone(results);
+        this.trigger(this.distributor)
+    },
+    onGetCurrentDistributorFailed:function(data){
+        console.log("Failed Fetching From API for currend distributor")
     }
 
 });

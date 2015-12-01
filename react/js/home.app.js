@@ -27,7 +27,7 @@ var routes = (
                 <Route name = "distributordetails" path = "d/:distributorId" handler = {DistributorDetails}> </Route>
                 <Route name = "editdistributor" path = "d/:distributorId/edit" handler = {Manage} />
                 <Route name = "createdistributor" path = "create" handler = {Manage} />
-                <Route name = "flowchart" path = "flowchart" handler = {FlowChart} />
+                <Route name = "flowchart" path = "d/:distributorId/flowchart" handler = {FlowChart} />
             </Route>
       </Route>
     </Route>

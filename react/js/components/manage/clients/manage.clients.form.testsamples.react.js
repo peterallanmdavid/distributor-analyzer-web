@@ -31,8 +31,8 @@ var TestSamplesForm = React.createClass({
         this.setState(newState);
     },
     _onAddTestSamples:function(){
-        var id=CommonUtils.getCurrentId(this.state.testSamples)
-        this.props.addTestSamples({id:id ,name:this.state.name, capacity:this.state.capacity});
+        var tempId=CommonUtils.getCurrentId(this.state.testSamples)
+        this.props.addTestSamples({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
         var ts =[];
         if(ts.length===0 && this.props.testSamples.length>0){
             ts = this.props.testSamples;

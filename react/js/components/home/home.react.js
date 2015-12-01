@@ -38,6 +38,7 @@ var HomeComponent = React.createClass({
                 <div className = "main-content">
 				<RouteHandler
                         distributorData = {this.state.distributorData}
+                        routeData = {this.state.routeData}
                 />
                 </div>
 			</div>

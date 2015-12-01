@@ -13,7 +13,11 @@ var VehicleListItem = React.createClass({
         })
     },
     _removeItem:function(){
-        this.props.removeVehicle(this.props.vehicleItem.id)
+        if(typeof this.props.vehicleItem.id!=="undefined"){
+            this.props.removeVehicle(this.props.vehicleItem.id, false)
+        }else{
+            this.props.removeVehicle(this.props.vehicleItem.tempId, true)
+        }
     },
     render:function(){
         var vehicleItem= this.props.vehicleItem;

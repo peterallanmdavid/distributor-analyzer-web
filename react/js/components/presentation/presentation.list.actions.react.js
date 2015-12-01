@@ -19,13 +19,6 @@ var PresentationActionList= React.createClass({
                     link = {viewUrl}
 
                 />
-                <GenericButton
-                    buttonText ={removeButtonText}
-                    onClickHandler = {function(){console.log("removing")}}
-                    enableLink = {false}
-                    link= "/"
-
-                />
             </div>
         )
     }

@@ -8,7 +8,7 @@ var SourcesForm = React.createClass({
             id:"",
             name:"",
 			typeId: "",
-			typeName:"",
+            type:"",
 			quantityDaily:"",
 			quantityWeekly:"",
 			quantityMonthly:""
@@ -23,7 +23,7 @@ var SourcesForm = React.createClass({
 	_sourceTypeSelected:function(name, e, value_name){
 		var value = e.target.value;
 		this.setState({typeId:value});
-		this.setState({typeName:value_name});
+		this.setState({type:value_name});
 	},
 	_changeQuantity:function(name, e){
 		value = e.target.value;
@@ -35,7 +35,7 @@ var SourcesForm = React.createClass({
 		var data = {
             name:this.state.name,
 			typeId: this.state.typeId,
-			typeName: this.state.typeName,
+            type: this.state.type,
 			quantity:{
 				daily:this.state.quantityDaily,
 				weekly:this.state.quantityWeekly,
@@ -46,7 +46,7 @@ var SourcesForm = React.createClass({
         this.setState({  id:0,
             name:"",
             typeId: 0,
-            typeName:"",
+            type:"",
             quantityDaily:0,
             quantityWeekly:0,
             quantityMonthly:0})
@@ -67,7 +67,7 @@ var SourcesForm = React.createClass({
 					        isValid={true}
 					 
 					        className="source-type"
-					        value = {this.state.type}
+					        value = {this.state.typeId}
 					        name="type"
 						/>
 					</div>

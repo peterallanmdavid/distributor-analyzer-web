@@ -71,7 +71,11 @@ module.exports = {
 
     saveDistributor: function(data, successCallBack, errorCallBack){
         var url = this.url.distributor;
-        this.postData({}, url, successCallBack, errorCallBack);
+        this.postData(data, url, successCallBack, errorCallBack);
+    },
+    getCurrentDistributor:function(id, successCallBack,errorCallBack){
+        var url = this.url.distributor + "/" + id;
+        this.getData({}, url, successCallBack, errorCallBack);
     }
 
 }

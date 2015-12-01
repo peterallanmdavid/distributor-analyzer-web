@@ -13,6 +13,10 @@ var DistributorDetails = React.createClass({
         var d = this.props.currentDistributor;
         var editUrl = "#/home/distributor/d/"+d.id+"/edit";
         var editBUttonText = <div><i className="fa fa-pencil"></i>EDIT</div>
+        var flowChart = "#/home/distributor/d/"+d.id+"/flowchart";
+        var home = "#home/distributor"
+        var flowChartText = <div><i className="fa fa-object-group"></i>VIEW FLOWCHART</div>
+        var homeBtnText = <div><i className="fa fa-home"></i>Home</div>
         return (
             <div className = "view-distributor card">
                 <div className = "row-field info-card">
@@ -25,10 +29,22 @@ var DistributorDetails = React.createClass({
                     </div>
                     <div className = "menu-buttons">
                         <GenericButtons
-                            className  = "edit-button"
+                            className  = "edit-button "
+                            link = {home}
+                            enableLink = {true}
+                            buttonText = {homeBtnText}
+                        />
+                        <GenericButtons
+                            className  = "edit-button flow-chart"
                             link = {editUrl}
                             enableLink = {true}
                             buttonText = {editBUttonText}
+                        />
+                        <GenericButtons
+                            className  = "edit-button flow-chart"
+                            link = {flowChart}
+                            enableLink = {true}
+                            buttonText = {flowChartText}
                         />
                     </div>
 
@@ -42,7 +58,7 @@ var DistributorDetails = React.createClass({
                     />
                 </div>
                 <div className = "row-field list-fields">
-                    <div className = "text-label-header">Sources</div>
+                    <div className = "text-label-header">Supplier</div>
                     <SourceList
                         sources = {d.sources}
                         removeSource = {function(){}}
@@ -50,7 +66,7 @@ var DistributorDetails = React.createClass({
                     />
                 </div>
                 <div className = "row-field">
-                    <div className = "text-label-header">Clients</div>
+                    <div className = "text-label-header">Suspect's Customer</div>
                     <ClientList
                         clients = {d.clients}
                     />

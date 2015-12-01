@@ -8,6 +8,7 @@ var DistributorAction = Reflux.createActions({
     'addClient':{},
     'addVehicle':{},
     'setDistributorForm':{},
+    'getCurrentDistributor':{asyncResult: true},
     'removeClient':{},
     'removeSource':{},
     'removeVehicle':{},

@@ -15,9 +15,6 @@
   margin-right: auto;
   color: white;
 }
-.right {
-  float: right;
-}
 .ta-right {
   text-align: right !important;
 }
@@ -63,4 +60,7 @@
   float: left;
   width: 100%;
   clear: both;
+}
+.generic-btn .fa {
+  margin-right: 10px;
 }

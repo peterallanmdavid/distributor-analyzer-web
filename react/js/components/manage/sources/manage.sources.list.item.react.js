@@ -13,7 +13,11 @@ var SourcesListItem = React.createClass({
         })
     },
 	_removeItem:function(){
-		this.props.removeSource(this.props.sourceItem.id)
+        if(typeof this.props.sourceItem.id!=="undefined"){
+            this.props.removeSource(this.props.sourceItem.id, false)
+        }else{
+            this.props.removeSource(this.props.sourceItem.tempId, true)
+        }
 	},
 	render:function(){
 		var sourceItem= this.props.sourceItem;
@@ -26,7 +30,7 @@ var SourcesListItem = React.createClass({
 				<div className = "source-item card-white">
 					<div className = "si-row">
                         <div className = "si-field">{sourceItem.name}</div>
-						<div className = "si-field">{sourceItem.typeName}</div>
+						<div className = "si-field">{sourceItem.type}</div>
 						<div className = "si-field">{sourceItem.quantity.daily}</div>
 						<div className = "si-field">{sourceItem.quantity.weekly}</div>
 						<div className = "si-field">{sourceItem.quantity.monthly}</div>
