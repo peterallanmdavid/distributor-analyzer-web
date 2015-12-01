@@ -54,7 +54,7 @@ var Distributor= React.createClass({
     render: function () {
         var distActions = this._distributorActions();
         var disData = this.props.distributorData;
-        var sideMenu = <SideMenu />
+        var sideMenu = <SideMenu allDist = {disData.allDistributors} />
         var  withSideMenu = (this.props.routeData.route.name!=="flowchart")
         if(!withSideMenu){
             sideMenu = <span></span>

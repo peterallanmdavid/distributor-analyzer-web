@@ -7,7 +7,7 @@ var ManageTestSampleItems= React.createClass({
         item: React.PropTypes.object
     },
     _removeTestSample:function() {
-      this.props.removeTestSample(this.props.item.id);
+      this.props.removeTestSample(this.props.item.tempId);
     },
     render: function () {
         var d = this.props.item;

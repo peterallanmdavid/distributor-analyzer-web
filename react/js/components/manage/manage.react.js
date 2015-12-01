@@ -3,36 +3,61 @@ var React = require('react')
 	, ManageSources = require('./manage.sources.react')
 	, ManageClients = require('./manage.clients.react')
     , ManageVehicles = require('./manage.vehicles.react')
+    , Scroll = require('react-scroll')
+    , Element = Scroll.Element
 	, _ = require('lodash')
 	, Router = require('react-router')
     , Link = Router.Link
+    , classnames = require('classnames')
 	;
 
 
 
 var Manage = React.createClass({
+    mixins:[Scroll ],
+    getInitialState:function(){
+        return({
+            isValid:true
+        })
+    },
 	propTypes:{
         distActions: React.PropTypes.object,
 		sourceTypes:React.PropTypes.object,
         distributorForm:React.PropTypes.object
 	},
 	_saveData:function(){
-		this.props.distActions.saveData();
+        var name = this.props.distributorForm.name;
+        if(name==="" || typeof name==="undefined" || name===null){
+            this.setState({isValid:false})
+            this.scroller.scrollTo("dist-name");
+        }else{
+            this.props.distActions.saveData();
+        }
+
 	},
 	_onChangeValue:function(name, e){
+
 		var value = e.target.value;
+        if(name==="name" && value!=="" && typeof name!=="undefined" && name!==null){
+           this.setState({isValid:true})
+        }
+
 	 	this.props.distActions.setDistributorForm(name, value);
 	},
 	render:function(){
 		var disData = this.props.distributorForm;
-
+        var nameCname = classnames({"error": !this.state.isValid})
 		return(
 			<div className = "manage-container">
+
 				<ul>
-					<li><b>Add New Entry</b></li>
+                    <Element name = "dist-name">
+					    <li><b>Add New Entry</b></li>
+                    </Element>
+
 					<li>
 						<label>Suspect/Target </label>
-						<div><input value = {disData.name} onChange = {this._onChangeValue.bind(null, "name")}/></div>
+                        <div className = {nameCname}><input value = {disData.name} onChange = {this._onChangeValue.bind(null, "name")}/></div>
 					</li>
 				    <li>
 						<label>Address</label>

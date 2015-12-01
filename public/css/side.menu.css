@@ -1,3 +1,23 @@
 .side-menu {
+  color: #C8C8C8 ;
+  padding: 20px;
+}
+.side-menu .header {
+  font-weight: bold;
+}
+.side-menu .dist-list {
+  margin-left: 10px;
+}
+.side-menu .dist-list-item {
+  float: left;
+  width: 100%;
+  padding: 10px;
+}
+.side-menu .dist-list-item:hover {
   color: white;
+  border: 1px solid white;
+}
+.side-menu .generic-btn {
+  float: left;
+  color: #C8C8C8 ;
 }

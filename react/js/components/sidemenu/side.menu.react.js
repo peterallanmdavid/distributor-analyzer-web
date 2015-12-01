@@ -1,11 +1,16 @@
 var React = require('react')
+    , DistList  = require('./sidemenu.distributor.list.react')
 ;
 
 var SideMenu= React.createClass({
+    propTypes:{
+        allDist: React.PropTypes.array
+    },
     render: function () {
         return (
             <div className = "side-menu">
-                This is Side Menu
+                <div className = "header">Suspects/Targets List</div>
+                <DistList distList = {this.props.allDist} />
             </div>
         )
     }

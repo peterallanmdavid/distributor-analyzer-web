@@ -65,7 +65,7 @@ var SourcesForm = React.createClass({
     },
     _removeTestSample:function(id){
         _.remove(this.state.testSamples, function(d){
-            return d.id.toString()===id.toString()
+            return d.tempId.toString()===id.toString()
         })
     },
 

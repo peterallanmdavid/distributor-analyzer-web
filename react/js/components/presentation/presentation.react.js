@@ -55,7 +55,7 @@ var Presentation = React.createClass({
 				  </div>
 				  {data}
 				</div>
-				<div className = "button-container"><Link to = "/home/distributor/create" ><div className= "generic-button">Create New Distributor</div></Link></div>
+				<div className = "button-container"><Link to = "/home/distributor/create" ><div className= "generic-button">New Suspect</div></Link></div>
 			</div>
 		);
 	}

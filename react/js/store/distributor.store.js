@@ -46,6 +46,11 @@ var DistributorStore = Reflux.createStore({
             })*/
             DistAction.getCurrentDistributor(data.route.params.distributorId);
         }
+        switch (data.route.name){
+            case "createdistributor":
+                this.clearDistributorForm()
+                break;
+        }
     },
     getAllDistributors:function(){
         return this.distributor.allDistributors;
@@ -72,6 +77,7 @@ var DistributorStore = Reflux.createStore({
                 clients:[],
                 vehicles:[]
         }
+        this.trigger(this.distributor)
     },
     onSaveDistributor:function(){
         var data = {};

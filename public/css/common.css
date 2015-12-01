@@ -61,6 +61,12 @@
   width: 100%;
   clear: both;
 }
+.generic-btn {
+  color: black;
+}
 .generic-btn .fa {
   margin-right: 10px;
+}
+.error input {
+  border-color: red;
 }

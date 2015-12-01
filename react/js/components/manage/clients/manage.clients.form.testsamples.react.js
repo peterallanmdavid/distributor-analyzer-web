@@ -32,17 +32,25 @@ var TestSamplesForm = React.createClass({
     },
     _onAddTestSamples:function(){
         var tempId=CommonUtils.getCurrentId(this.state.testSamples)
-        this.props.addTestSamples({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
         var ts =[];
         if(ts.length===0 && this.props.testSamples.length>0){
             ts = this.props.testSamples;
         }else{
             ts = _.clone(this.state.testSamples)
         }
-        ts.push({id:id ,name:this.state.name, capacity:this.state.capacity});
+        ts.push({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
         this.setState({testSamples:ts, name:"" ,capacity:"", id:""});
         React.findDOMNode(this.refs.name).focus();
     },
+    _removeTestSample:function(id){
+        var ts = _.clone(this.state.testSamples);
+        _.remove(ts, function(d){
+            return d.tempId.toString()===id.toString()
+        })
+        this.setState({testSamples:ts});
+
+    },
+
     _handleKeyDown:function(event){
         if(event.keyCode===13 && this.state.name!=="" && this.state.capacity!==""){
             this._onAddTestSamples();
@@ -55,7 +63,7 @@ var TestSamplesForm = React.createClass({
             <div className = "test-sample">
                 <TestSamplesList
                     testSamples = {ts}
-                    removeTestSample = {this.props.removeTestSample}
+                    removeTestSample = {this._removeTestSample}
                 />
 
                 <div onKeyDown = {this._handleKeyDown}className = "client-form test-sample-row card-white">
