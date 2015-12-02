@@ -13,7 +13,7 @@ var WarehoustList= React.createClass({
         _.forEach(dist.sources, function(d){
             if(d.type==="Warehouse"){
                 whList.push(<li>
-                    <div>{d.id}</div>
+                    <div>{d.location}</div>
                     <div>{d.quantity.daily}</div>
                     <div>{d.quantity.monthly}</div>
                     <div>{d.quantity.weekly}</div>

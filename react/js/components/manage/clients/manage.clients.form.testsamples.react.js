@@ -40,6 +40,7 @@ var TestSamplesForm = React.createClass({
         }
         ts.push({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
         this.setState({testSamples:ts, name:"" ,capacity:"", id:""});
+        this.props.addTestSamples({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
         React.findDOMNode(this.refs.name).focus();
     },
     _removeTestSample:function(id){
@@ -48,6 +49,7 @@ var TestSamplesForm = React.createClass({
             return d.tempId.toString()===id.toString()
         })
         this.setState({testSamples:ts});
+        this.props.removeTestSample(id)
 
     },
 

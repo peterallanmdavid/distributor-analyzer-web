@@ -33,7 +33,7 @@ var SourcesForm = React.createClass({
 	},
 	_saveSource:function(){
 		var data = {
-            name:this.state.name,
+            location:this.state.location,
 			typeId: this.state.typeId,
             type: this.state.type,
 			quantity:{
@@ -44,7 +44,7 @@ var SourcesForm = React.createClass({
 		}
 		this.props.distActions.addSource(data);
         this.setState({  id:0,
-            name:"",
+            location:"",
             typeId: 0,
             type:"",
             quantityDaily:0,
@@ -58,7 +58,7 @@ var SourcesForm = React.createClass({
 			<div className = "source-form card-white">
 				<div className = "form-row">
                     <div className = "input-field">
-                        <input className = "ta-left" value= {this.state.name} onChange ={this._changeQuantity.bind(null, "name")}/>
+                        <input className = "ta-left" value= {this.state.location} onChange ={this._changeQuantity.bind(null, "location")}/>
                     </div>
 					<div className = "input-field">
 						<CommonDropDown
