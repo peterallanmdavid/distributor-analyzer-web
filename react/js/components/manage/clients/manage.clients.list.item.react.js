@@ -21,14 +21,15 @@ var SourcesListItem = React.createClass({
         removeClient: React.PropTypes.func
 	},
     _removeItem:function(){
-        if(typeof this.props.clientItem.id!=="undefined"){
-            this.props.removeClient(this.props.clientItem.id, false)
-        }else{
-            this.props.removeClient(this.props.clientItem.tempId, true)
-        }
+            this.props.removeClient(this.props.clientItem.tempId)
     },
+    _editItem:function(){
+        this.props.editClient(this.props.clientItem.tempId, true)
+    },
+
+
     //////TODO to be refactores since this are also used in form
-        _closeModal:function(){
+    _closeModal:function(){
         this.setState({showModal:false})
     },
     _launchTestSamplesForm:function(){
@@ -48,7 +49,8 @@ var SourcesListItem = React.createClass({
         var buttons = [];
         if(this.props.isForm){
             buttons.push(<div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length} view list</div>);
-            buttons.push(<div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-times"></i></div>);
+            buttons.push(<div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-trash"></i></div>)
+            buttons.push(<div className = "edit-button" onClick = {this._editItem}><i className="fa fa-pencil"></i></div>);
         }
 		return(
 			<div className = "client-item-container">

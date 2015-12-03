@@ -1,6 +1,7 @@
 var React = require('react')
 	, _ = require('lodash')
 	, ClientItem = require('./manage.clients.list.item.react')
+    , ClientForm = require('./manage.clients.form.react')
 	, classnames = require('classnames')
 	; 
 
@@ -15,16 +16,30 @@ var ClientList = React.createClass({
         var that =this;
 		var clients = this.props.clients;
 		var clientItem = [];
-		_.forEach(clients, function(d){
-			clientItem.push(
-                <ClientItem
-                    key = {d.id}
-                    clientItem = {d}
-                    removeClient = {that.props.removeClient}
-                    isForm = {that.props.isForm}
+		_.forEach(clients, function(d, key){
+            if(d.isEdit){
+                clientItem.push(
+                    <ClientForm
+                        distActions = {that.props.distActions}
+                        client = {d}
+                        isEdit = {true}
+                        key = {key}
+                    />
+                )
 
-                />
-            );
+            }else{
+                clientItem.push(
+                    <ClientItem
+                        key = {d.id}
+                        clientItem = {d}
+                        removeClient = {that.props.distActions.removeClient}
+                        editClient = {that.props.distActions.editClient}
+                        isForm = {that.props.isForm}
+
+                    />
+                );
+            }
+
 		});
 		var addButtonClass = classnames("add-button card-white",{"hidden":this.props.isAdding})
         var addBUtton = <span></span>;

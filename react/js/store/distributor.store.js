@@ -27,6 +27,9 @@ var DistributorStore = Reflux.createStore({
             vehicles:[],
             clients:[]
         },
+        sourceForm:{},
+        clientForm:{},
+        vehicleForm:{},
         currentDistributor:{},
         sourceTypes:[
             {id: 1, name:"Warehouse"},
@@ -79,6 +82,23 @@ var DistributorStore = Reflux.createStore({
         }
         this.trigger(this.distributor)
     },
+    createTempIdForDistributorForm: function(object){
+        var dForm = this.distributor.distributorForm[object];
+        for(var i=0; i<dForm.length;i++){
+            dForm[i].tempId=_.clone(i)+1;
+        }
+    },
+    createTempIdForTestSamples:function(){
+        var clients = this.distributor.distributorForm.clients;
+        _.forEach(clients, function(d){
+            for(var i=0; i<d.testSamples.length;i++){
+                d.clients[i].tempId=i;
+            }
+        })
+    },
+
+
+
     onSaveDistributor:function() {
         var data = {};
         var request = this.distributor.distributorForm;
@@ -117,55 +137,74 @@ var DistributorStore = Reflux.createStore({
         this.distributor.distributorForm[name]=value;
         this.trigger(this.distributor);
     },
-    //will be used when api is ready
     onAddSource: function(data){
-        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.sources);
-        this.distributor.distributorForm.sources.push(data);
-        this.trigger(this.distributor);
-
+        var that = this;
+        if(data.tempId!==""){
+            var sources = this.distributor.distributorForm.sources;
+            for(var i=0; i<sources.length;i++){
+                if(sources[i].tempId.toString()===data.tempId.toString()){
+                    sources[i]=data;
+                    break;
+                }
+            }
+        }else{
+            data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.sources);
+            this.distributor.distributorForm.sources.push(data);
+        }
+        this.trigger(this.distributor)
     },
     onAddClient:function(data){
-        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.clients);
-        this.distributor.distributorForm.clients.push(data);
+        var that = this;
+        if(data.tempId!==""){
+            var clients = this.distributor.distributorForm.clients;
+            for(var i=0; i<clients.length;i++){
+                if(clients[i].tempId.toString()===data.tempId.toString()){
+                    clients[i]=data;
+                    break;
+                }
+            }
+        }else{
+            data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.clients);
+            this.distributor.distributorForm.clients.push(data);
+        }
+
         this.trigger(this.distributor);
     },
     onAddVehicle:function(data){
-        data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
-        this.distributor.distributorForm.vehicles.push(data);
+        var that = this;
+        if(data.tempId!==""){
+            var vehicles = this.distributor.distributorForm.vehicles;
+            for(var i=0; i<vehicles.length;i++){
+                if(vehicles[i].tempId.toString()===data.tempId.toString()){
+                    vehicles[i]=data;
+                    break;
+                }
+            }
+        }else{
+            data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
+            this.distributor.distributorForm.vehicles.push(data);
+        }
         this.trigger(this.distributor);
     },
-    onRemoveSource: function(id, isNew){
+    onRemoveSource: function(id){
         _.remove(this.distributor.distributorForm.sources, function(d){
-            if(isNew){
                 return d.tempId.toString()===id.toString();
-            }else{
-                return d.id.toString()===id.toString();
-            }
         })
         this.trigger(this.distributor);
     },
-    onRemoveClient: function(id,isNew){
+    onRemoveClient: function(id){
         _.remove(this.distributor.distributorForm.clients, function(d){
-            if(isNew){
-                return d.tempId.toString()===id.toString();
-            }else{
-                return d.id.toString()===id.toString();
-            }
-
+            return d.tempId.toString()===id.toString();
         })
         this.trigger(this.distributor);
     },
-    onRemoveVehicle:function(id,isNew){
+    onRemoveVehicle:function(id){
         _.remove(this.distributor.distributorForm.vehicles, function(d){
-            if(isNew){
-                return d.tempId.toString()===id.toString();
-            }else{
-                return d.id.toString()===id.toString();
-            }
+            return d.tempId.toString()===id.toString();
         })
         this.trigger(this.distributor);
     },
-    onRemoveTestSamples: function(clientId, id,isNew){
+    onRemoveTestSamples: function(clientId, id){
         var client = _.find(this.distributor.distributorForm.clients, function(d){
             return  d.id.toString()===clientId.toString();
         });
@@ -174,6 +213,32 @@ var DistributorStore = Reflux.createStore({
         })
         this.trigger(this.distributor);
     },
+
+    onEditSource:function(id, value){
+        var existingObject = _.find(this.distributor.distributorForm.sources, function(d){
+            return d.tempId.toString()===id.toString()
+        })
+        existingObject.isEdit = value;
+        this.trigger(this.distributor)
+    },
+
+    onEditVehicle:function(id, value){
+        var existingObject = _.find(this.distributor.distributorForm.vehicles, function(d){
+            return d.tempId.toString()===id.toString()
+        })
+        existingObject.isEdit = value;
+        this.trigger(this.distributor)
+    },
+
+    onEditClient:function(id, value){
+        var existingObject = _.find(this.distributor.distributorForm.clients, function(d){
+            return d.tempId.toString()===id.toString()
+        })
+        existingObject.isEdit = value;
+        this.trigger(this.distributor)
+    },
+
+
     onFetchAllDistributors:function(){
        WebUtils.fetchAllDistributors(DistAction.fetchAllDistributors.completed, DistAction.fetchAllDistributors.failed);
     },
@@ -192,6 +257,10 @@ var DistributorStore = Reflux.createStore({
         var results = data.response.data;
         this.distributor.currentDistributor = results;
         this.distributor.distributorForm = _.clone(results);
+        this.createTempIdForDistributorForm("sources");
+        this.createTempIdForDistributorForm("clients");
+        this.createTempIdForDistributorForm("vehicles");
+        this.createTempIdForTestSamples();
         this.distributor.currentDistributor =_.clone(results);
         this.trigger(this.distributor)
     },

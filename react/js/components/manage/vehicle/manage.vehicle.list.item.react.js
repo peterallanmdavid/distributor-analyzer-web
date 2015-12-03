@@ -13,17 +13,18 @@ var VehicleListItem = React.createClass({
         })
     },
     _removeItem:function(){
-        if(typeof this.props.vehicleItem.id!=="undefined"){
-            this.props.removeVehicle(this.props.vehicleItem.id, false)
-        }else{
-            this.props.removeVehicle(this.props.vehicleItem.tempId, true)
-        }
+        this.props.removeVehicle(this.props.vehicleItem.tempId)
+    },
+    _editItem:function(){
+        this.props.editVehicle(this.props.vehicleItem.tempId, true)
     },
     render:function(){
         var vehicleItem= this.props.vehicleItem;
-        var removeBtn = (<span></span>)
+        var removeBtn = (<span></span>);
+        var editBtn = (<span></span>);
         if(this.props.isForm){
-            removeBtn = <div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-times"></i></div>
+            removeBtn = <div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-trash"></i></div>
+            editBtn = <div className = "edit-button" onClick = {this._editItem}><i className="fa fa-pencil"></i></div>
         }
         return(
             <div className = "source-item-container">
@@ -34,6 +35,7 @@ var VehicleListItem = React.createClass({
                         <div className = "si-field">{vehicleItem.owner}</div>
                     </div>
                     {removeBtn}
+                    {editBtn}
                 </div>
 
             </div>

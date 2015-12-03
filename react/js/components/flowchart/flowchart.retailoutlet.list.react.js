@@ -20,7 +20,7 @@ var RetailOutlet = React.createClass({
         var cName = classnames({"hidden":whList.length===0})
         return (
             <ul className = {cName}>
-                //{whList}
+                {whList}
             </ul>
         )
     }

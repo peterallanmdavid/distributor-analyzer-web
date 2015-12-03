@@ -27,7 +27,7 @@ var Sources = React.createClass({
             <div>
                 <VehiclesList
                     vehicles = {vehicles}
-                    removeVehicle = {this.props.distActions.removeVehicle}
+                    distActions = {this.props.distActions}
                     showForm = {this._showForm}
                     isAdding = {this.state.isAdding}
                 />

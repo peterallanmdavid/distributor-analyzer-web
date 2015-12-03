@@ -29,7 +29,7 @@ var Clients = React.createClass({
 					clients = {clients}
 					showForm = {this._showForm}
 					isAdding = {this.state.isAdding}
-                    removeClient = {this.props.distActions.removeClient}
+                    distActions = {this.props.distActions}
                     isForm = {true}
 				/>
 				<div className = {addClientsClass}>

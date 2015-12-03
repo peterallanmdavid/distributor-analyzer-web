@@ -53,7 +53,7 @@ var DistributorDetails = React.createClass({
                     <div className = "text-label-header">Vehicles</div>
                     <VehicleList
                         vehicles = {d.vehicles}
-                        removeVehicle = {function(){}}
+                        distActions = {function(){}}
                         isForm = {false}
                     />
                 </div>
@@ -61,7 +61,7 @@ var DistributorDetails = React.createClass({
                     <div className = "text-label-header">Supplier</div>
                     <SourceList
                         sources = {d.sources}
-                        removeSource = {function(){}}
+                        distActions = {this.props.distActions}
                         isForm = {false}
                     />
                 </div>

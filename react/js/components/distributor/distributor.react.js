@@ -33,17 +33,26 @@ var Distributor= React.createClass({
             addClient:function(data){
                 DistributorAction.addClient(data);
             },
-            removeVehicle:function(data, isNew){
-                DistributorAction.removeVehicle(data, isNew);
+            removeVehicle:function(data){
+                DistributorAction.removeVehicle(data);
             },
-            removeSource:function(id,isNew){
-                DistributorAction.removeSource(id, isNew);
+            removeSource:function(id){
+                DistributorAction.removeSource(id);
             },
-            removeClient:function(id,isNew){
-                DistributorAction.removeClient(id, isNew);
+            removeClient:function(id){
+                DistributorAction.removeClient(id);
             },
-            removeTestSamples:function(id, isNew){
-                DistributorAction.removeTestSamples(id,isNew);
+            removeTestSamples:function(id){
+                DistributorAction.removeTestSamples(id);
+            },
+            editSource: function(id,value){
+                DistributorAction.editSource(id,value)
+            },
+            editVehicle: function(id,value){
+                DistributorAction.editVehicle(id,value)
+            },
+            editClient: function(id,value){
+                DistributorAction.editClient(id,value)
             },
             getCurrentDistributor:function(){
                 DistributorAction.getCurrentDistributor();

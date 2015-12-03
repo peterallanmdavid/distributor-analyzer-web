@@ -103,7 +103,7 @@ var Manage = React.createClass({
 					</li>
 					 <li>
 						<Link to = "/home/distributor" ><div className= "generic-button right">Home</div></Link>
-						<div className = "generic-button right" onClick = {this._saveData}>Save</div>
+						<div className = "generic-button pointer" onClick = {this._saveData}>Save</div>
 					</li>
 				</ul>
 			</div>

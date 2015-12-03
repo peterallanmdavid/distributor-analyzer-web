@@ -36,12 +36,6 @@
 .clearfix {
   clear: both;
 }
-.remove-button {
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  color: #b94a48;
-}
 .modal-content {
   float: left;
   width: 100%;
@@ -69,4 +63,7 @@
 }
 .error input {
   border-color: red;
+}
+.pointer {
+  cursor: pointer;
 }

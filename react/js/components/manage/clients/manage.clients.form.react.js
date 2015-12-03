@@ -7,11 +7,16 @@ var React = require('react')
 
 var SourcesForm = React.createClass({
 	getInitialState:function(){
-		return({
-            name:"",
-            owner:"",
-            location:"",
-            testSamples:[] ,
+		return this._getInitialStateFromProps();
+	},
+    _getInitialStateFromProps:function(){
+        var props  = this.props.client
+        return({
+            tempId:props.tempId,
+            name:props.name,
+            owner:props.owner,
+            location:props.location,
+            testSamples:props.testSamples ,
             showModal: false,
             confirmMethod: function(){},
             confirmParams: {},
@@ -21,10 +26,25 @@ var SourcesForm = React.createClass({
             useLoader:false,
             loaderText:''
 
-		});
-	},
+        })
+    },
+    getDefaultProps:function(){
+        return({
+            isEdit:false,
+            client:{
+                tempId:"",
+                name:"",
+                owner:"",
+                location:"",
+                testSamples:[]
+            }
+        })
+    },
 	propTypes: {
-		distActions: React.PropTypes.object
+        distActions: React.PropTypes.object,
+        closeForm:React.PropTypes.func,
+        client: React.PropTypes.object,
+        isEdit: React.PropTypes.bool
 	},
 	_changeQuantity:function(name, e){
 		value = e.target.value;
@@ -34,13 +54,34 @@ var SourcesForm = React.createClass({
 	},
 	_saveClient:function(){
 		var data = {
+            tempId:this.state.tempId,
             name:this.state.name,
             owner:this.state.owner,
             location:this.state.location,
             testSamples:this.state.testSamples
         }
         this.props.distActions.addClient(data);
+        this._clearForm();
+        if(this.props.isEdit){
+            this._closeForm();
+        }
 	},
+    _closeForm:function(){
+        if(this.props.isEdit){
+            this.props.distActions.editClient(this.props.client.tempId, false)
+        }else{
+            this.props.closeForm();
+        }
+    },
+    _clearForm:function(){
+        this.setState({
+            tempId:"",
+            name:"",
+            owner:"",
+            location:"",
+            testSamples:[]
+        })
+    },
     _closeModal:function(){
         this.setState({showModal:false})
     },
@@ -93,7 +134,7 @@ var SourcesForm = React.createClass({
                 </div>
 				<div className = "input-field action-buttons">
                     <i onClick = {this._saveClient} className="fa fa-check-circle"></i>
-					<i onClick = {this.props.closeForm} className="fa fa-times-circle"></i>
+					<i onClick = {this._closeForm} className="fa fa-times-circle"></i>
 				</div>
 
                 <Modal

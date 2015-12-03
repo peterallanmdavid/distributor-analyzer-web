@@ -88,6 +88,18 @@
 .source-item .header {
   width: 100%;
 }
+.source-item .edit-button {
+  position: absolute;
+  right: 45px;
+  top: 12px;
+  color: #468847;
+}
+.source-item .remove-button {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  color: #b94a48;
+}
 .si-row {
   width: 100%;
   display: inline-flex;
@@ -135,6 +147,18 @@
 }
 .client-item .item-field label {
   width: 100%;
+}
+.client-item .edit-button {
+  position: absolute;
+  right: 45px;
+  top: 12px;
+  color: #468847;
+}
+.client-item .remove-button {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  color: #b94a48;
 }
 .test-sample .test-sample-row {
   margin-top: 0;

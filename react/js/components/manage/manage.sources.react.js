@@ -27,10 +27,11 @@ var Sources = React.createClass({
 		return(
 			<div>
 				<SourceList 
-					sources = {sources} 
-					removeSource = {this.props.distActions.removeSource}
+					sources = {sources}
 					showForm = {this._showForm}
+                    sourceTypes = {this.props.sourceTypes}
 					isAdding = {this.state.isAdding}
+                    distActions = {this.props.distActions}
 				/>
 				<div className = {addSourceClass}>
 					<SourceForm
