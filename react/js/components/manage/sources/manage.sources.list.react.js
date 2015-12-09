@@ -40,7 +40,7 @@ var SourcesList = React.createClass({
 
 		});
 		var addButtonClass = classnames("add-button card-white",{"hidden":this.props.isAdding})
-        var addButton = (<div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Source</div>);
+        var addButton = (<div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Supplier</div>);
         if(!this.props.isForm){
             addButton = (<span></span>)
         }

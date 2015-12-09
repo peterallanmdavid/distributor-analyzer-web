@@ -35,6 +35,7 @@ var SourcesListItem = React.createClass({
     _launchTestSamplesForm:function(){
         var addTestSampleForm = (<TestSampleList
             testSamples = {this.props.clientItem.testSamples}
+            isForm = {false}
         />)
         this.setState({
             showModal:true,
@@ -51,6 +52,8 @@ var SourcesListItem = React.createClass({
             buttons.push(<div onClick = {this._launchTestSamplesForm}className = "item-field">{clientItem.testSamples.length} view list</div>);
             buttons.push(<div className = "remove-button" onClick = {this._removeItem}><i className="fa fa-trash"></i></div>)
             buttons.push(<div className = "edit-button" onClick = {this._editItem}><i className="fa fa-pencil"></i></div>);
+        }else{
+            buttons.push(<div className = "item-field">{this.props.clientItem.testSamples.length}</div>)
         }
 		return(
 			<div className = "client-item-container">

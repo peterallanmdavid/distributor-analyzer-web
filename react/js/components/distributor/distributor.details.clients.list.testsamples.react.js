@@ -12,7 +12,7 @@ var TestSamples= React.createClass({
         _.forEach(testSamples, function(d){
             _testSamples.push(
                 <div className = "card info-card">
-                    <div className = "text-field">{d.name} : {d.capacity}</div>
+                    <div className = "text-field">{d.name} : {d.quantity}</div>
                 </div>
             )
         })

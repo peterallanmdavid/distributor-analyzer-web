@@ -9,18 +9,19 @@ var TestSamplesForm = React.createClass({
         return({
             id:"",
             name:"",
-            capacity:"",
+            quantity:"",
             testSamples:[]
         })
     },
     propTypes:{
         testSamples:React.PropTypes.array,
-        addTestSamples: React.PropTypes.func
+        addTestSamples: React.PropTypes.func,
+        isForm: React.PropTypes.bool
     },
     componentWillUnmount:function(){
         this.setState({
             name:"",
-            capacity:"",
+            quantity:"",
             testSamples:[]
         });
     },
@@ -38,9 +39,9 @@ var TestSamplesForm = React.createClass({
         }else{
             ts = _.clone(this.state.testSamples)
         }
-        ts.push({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
-        this.setState({testSamples:ts, name:"" ,capacity:"", id:""});
-        this.props.addTestSamples({tempId:tempId ,name:this.state.name, capacity:this.state.capacity});
+        ts.push({tempId:tempId ,name:this.state.name, quantity:this.state.quantity});
+        this.setState({testSamples:ts, name:"" ,quantity:"", id:""});
+        this.props.addTestSamples({tempId:tempId ,name:this.state.name, quantity:this.state.quantity});
         React.findDOMNode(this.refs.name).focus();
     },
     _removeTestSample:function(id){
@@ -54,7 +55,7 @@ var TestSamplesForm = React.createClass({
     },
 
     _handleKeyDown:function(event){
-        if(event.keyCode===13 && this.state.name!=="" && this.state.capacity!==""){
+        if(event.keyCode===13 && this.state.name!=="" && this.state.quantity!==""){
             this._onAddTestSamples();
         }
 
@@ -66,6 +67,7 @@ var TestSamplesForm = React.createClass({
                 <TestSamplesList
                     testSamples = {ts}
                     removeTestSample = {this._removeTestSample}
+                    isForm= {this.props.isForm}
                 />
 
                 <div onKeyDown = {this._handleKeyDown}className = "client-form test-sample-row card-white">
@@ -73,7 +75,7 @@ var TestSamplesForm = React.createClass({
                         <input ref = "name" value= {this.state.name} onChange ={this._changeHandler.bind(null, "name")}/>
                     </div>
                     <div className = "input-fields">
-                        <input value= {this.state.capacity} onChange ={this._changeHandler.bind(null, "capacity")}/>
+                        <input value= {this.state.quantity} onChange ={this._changeHandler.bind(null, "quantity")}/>
                     </div>
                     <div className = "input-field action-buttons">
                         <i onClick = {this._onAddTestSamples} className="fa fa-check-circle"></i>

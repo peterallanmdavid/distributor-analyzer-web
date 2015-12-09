@@ -87,6 +87,7 @@ var SourcesForm = React.createClass({
     },
     _launchTestSamplesForm:function(){
         var addTestSampleForm = (<TestSampleForm
+            isForm = {true}
             addTestSamples = {this._addTestSample}
             removeTestSample = {this._removeTestSample}
             testSamples = {this.state.testSamples}

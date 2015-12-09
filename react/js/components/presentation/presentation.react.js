@@ -31,7 +31,7 @@ var Presentation = React.createClass({
         if(presData.length>0){
             _.forEach(presData, function(d){
                 data.push(
-                    <PresentationItem presentationDataItem ={d} />
+                    <PresentationItem presentationDataItem ={d} distActions = {that.props.distActions} />
                 )
             })
         }
@@ -40,7 +40,7 @@ var Presentation = React.createClass({
 		return(
 			<div className = "presentation-container">
 				<div className = "presentation-table">
-				  <div className = "table-row main">Distributor List</div>
+				  <div className = "table-row main">Suspect/Target List</div>
 				  <div className = "table-row table-header">
                     <div className = "table-col">Actions</div>
 				    <div className = "table-col">Suspect / Target</div>

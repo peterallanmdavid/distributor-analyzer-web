@@ -5,14 +5,15 @@ var React = require('react')
 
 var PresentationList  = React.createClass({
     propTypes:{
-        presentationData: React.PropTypes.array
+        presentationData: React.PropTypes.array,
+        distActions:React.PropTypes.object
     },
     render: function () {
         var presData = this.props.presentationData;
         var presentationItem= [];
         _.forEach(presData, function(d){
             presentationItem.push(
-                <PresentationListItem presentationDataItem = {d}/>
+                <PresentationListItem presentationDataItem = {d} distActions = {this.props.distActions}/>
                )
         })
         return (

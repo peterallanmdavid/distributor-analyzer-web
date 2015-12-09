@@ -44,7 +44,7 @@ var ClientList = React.createClass({
 		var addButtonClass = classnames("add-button card-white",{"hidden":this.props.isAdding})
         var addBUtton = <span></span>;
         if(this.props.isForm){
-            addBUtton =  <div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Client</div>
+            addBUtton =  <div className = {addButtonClass} onClick = {this.props.showForm}><i className="fa fa-plus-circle"></i>Add Susepct's Customer</div>
         }
 		return(
 			<div>

@@ -92,7 +92,7 @@ var DistributorStore = Reflux.createStore({
         var clients = this.distributor.distributorForm.clients;
         _.forEach(clients, function(d){
             for(var i=0; i<d.testSamples.length;i++){
-                d.clients[i].tempId=i;
+                d.testSamples[i].tempId=i;
             }
         })
     },
@@ -260,7 +260,10 @@ var DistributorStore = Reflux.createStore({
         this.createTempIdForDistributorForm("sources");
         this.createTempIdForDistributorForm("clients");
         this.createTempIdForDistributorForm("vehicles");
-        this.createTempIdForTestSamples();
+        if(this.distributor.distributorForm.clients.length>0){
+            this.createTempIdForTestSamples();
+        }
+
         this.distributor.currentDistributor =_.clone(results);
         this.trigger(this.distributor)
     },

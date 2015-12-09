@@ -21,7 +21,7 @@ var TestSamples = React.createClass({
         var that = this;
         _.forEach(ts, function(d){
             tsItems.push(
-                <TestSampleItems item = {d} removeTestSample = {that.props.removeTestSample} />
+                <TestSampleItems item = {d} removeTestSample = {that.props.removeTestSample}  isForm={that.props.isForm}/>
             );
         });
         return (

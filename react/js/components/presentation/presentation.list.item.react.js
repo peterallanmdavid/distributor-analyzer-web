@@ -9,7 +9,8 @@ var React = require('react')
 
 var PresentationListItem = React.createClass({
     propTypes:{
-        presentationDataItem: React.PropTypes.object
+        presentationDataItem: React.PropTypes.object,
+        distActions:React.PropTypes.object
     },
     getInitialState:function(){
         return({
@@ -27,7 +28,7 @@ var PresentationListItem = React.createClass({
         console.log("opening")
         var body = <SourcesList
             sources = {this.props.presentationDataItem.sources}
-            removeSource = {function(){}}
+            distActions = {this.props.distActions}
             isForm = {false}
         />
         this.setState({
@@ -43,7 +44,7 @@ var PresentationListItem = React.createClass({
         console.log("opening")
         var body = <ClientList
             clients = {this.props.presentationDataItem.clients}
-            removeClients = {function(){}}
+            distActions = {this.props.distActions}
             isForm = {false}
         />
         this.setState({
@@ -59,7 +60,7 @@ var PresentationListItem = React.createClass({
         console.log("opening")
         var body = <VehicleList
             vehicles = {this.props.presentationDataItem.vehicles}
-            removeVehicles = {function(){}}
+            distActions = {this.props.distActions}
             isForm = {false}
         />
         this.setState({
@@ -94,10 +95,10 @@ var PresentationListItem = React.createClass({
                         buttonText ="view details"
                         onClickHandler = {this._viewClientDetails}
                     /></div>
-                    <div className = "table-col">{d.completedInvestigation}</div>
-                    <div className = "table-col">{d.currentIntelligence}</div>
-                    <div className = "table-col">{d.pendingLeads}</div>
-                    <div className = "table-col end">{d.taskingLeads}</div>
+                    <div className = "table-col long-text">{d.completedInvestigation}</div>
+                    <div className = "table-col long-text">{d.currentIntelligence}</div>
+                    <div className = "table-col long-text">{d.pendingLeads}</div>
+                    <div className = "table-col long-text end">{d.taskingLeads}</div>
                     <div>
                         <Modal
                             showModal={this.state.showModal}
