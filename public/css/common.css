@@ -28,7 +28,7 @@
   margin-top: 5px;
 }
 .card-white {
-  border: 2px solid #D8D8D8;
+  border: 1px solid #D8D8D8;
   background-color: white;
   padding: 9px;
   margin-top: 5px;
@@ -49,6 +49,9 @@
   float: left;
   width: 100%;
   clear: both;
+}
+.modal-content .modal-body .card-white {
+  border: 1px solid #D8D8D8;
 }
 .modal-content .modal-header {
   float: left;
