@@ -17,6 +17,20 @@
     display: block!important;
     padding:10px;
   }
+  .ellipsis{
+     overflow: hidden;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+     -webkit-line-clamp: 3;
+     -webkit-box-orient: vertical;
+     line-height: 1.25;
+     max-height: 145px;
+  }
+
+  .readmore-btn{
+    font-size: 9px;
+    color:#7f7f7f;
+  }
   .table-row{
     overflow: hidden;
     float: left;
@@ -24,6 +38,14 @@
     display: inline-flex;
     text-align: center;
     border-bottom: 1px solid #dfdfdf;
+    max-height: 80px;
+  }
+  .with-details{
+    .generic-btn{
+      font-size: 9px;
+
+      display: inline-flex;
+    }
   }
   .table-col{
     overflow: hidden;
@@ -31,6 +53,9 @@
     padding: 10px;
     text-align: center;
     width: 10%;
+    .generic-btn{
+      color: #7f7f7f;
+    }
   }
   .end{
     border-right: 0;
@@ -39,6 +64,10 @@
     margin-right:5px;
   }
 
+}
+
+.table-header{
+  font-weight: bold;
 }
 
 
