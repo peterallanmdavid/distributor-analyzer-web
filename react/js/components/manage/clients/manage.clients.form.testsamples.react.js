@@ -18,8 +18,12 @@ var TestSamplesForm = React.createClass({
         addTestSamples: React.PropTypes.func,
         isForm: React.PropTypes.bool
     },
+    componentDidMount:function(){
+        this.setState({testSamples: this.props.testSamples})
+    },
     componentWillUnmount:function(){
         this.setState({
+            tempId:"",
             name:"",
             quantity:"",
             testSamples:[]
@@ -32,24 +36,20 @@ var TestSamplesForm = React.createClass({
         this.setState(newState);
     },
     _onAddTestSamples:function(){
-        var tempId=CommonUtils.getCurrentId(this.state.testSamples)
-        var ts =[];
-        if(ts.length===0 && this.props.testSamples.length>0){
-            ts = this.props.testSamples;
-        }else{
-            ts = _.clone(this.state.testSamples)
-        }
-        ts.push({tempId:tempId ,name:this.state.name, quantity:this.state.quantity});
-        this.setState({testSamples:ts, name:"" ,quantity:"", id:""});
+        //var tsArray = this.state.testSamples.length>0?this.state.testSamples:this.props.testSamples;
+        var tsArray = _.clone(this.state.testSamples);
+        var tempId=CommonUtils.getCurrentId(this.props.testSamples)
+        tsArray.push({tempId:tempId ,name:this.state.name, quantity:this.state.quantity});
+        this.setState({testSamples:tsArray, name:"" ,quantity:"", id:""});
         this.props.addTestSamples({tempId:tempId ,name:this.state.name, quantity:this.state.quantity});
         React.findDOMNode(this.refs.name).focus();
     },
     _removeTestSample:function(id){
-        var ts = _.clone(this.state.testSamples);
+/*        var ts = _.clone(this.state.testSamples);
         _.remove(ts, function(d){
             return d.tempId.toString()===id.toString()
         })
-        this.setState({testSamples:ts});
+        this.setState({testSamples:ts});*/
         this.props.removeTestSample(id)
 
     },
@@ -65,7 +65,7 @@ var TestSamplesForm = React.createClass({
         return (
             <div className = "test-sample">
                 <TestSamplesList
-                    testSamples = {ts}
+                    testSamples = {this.state.testSamples}
                     removeTestSample = {this._removeTestSample}
                     isForm= {this.props.isForm}
                 />
