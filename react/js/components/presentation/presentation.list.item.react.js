@@ -78,6 +78,7 @@ var PresentationListItem = React.createClass({
                 <div className = "table-row">
                     <div className = "table-col"><ActionButtons id = {d.id.toString()} viewLinks = {this._viewLinks}/></div>
                     <div className = "table-col">{d.name}</div>
+                    <div className = "table-col">{d.personInCharge}</div>
                     <div className = "table-col">{d.location}</div>
                     <div className = "table-col with-details" >{d.vehicles.length} {vehicles} </div>
                     <div className = "table-col with-details">{d.sources.length} {sources} </div>

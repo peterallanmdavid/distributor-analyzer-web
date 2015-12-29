@@ -59,6 +59,11 @@ var Manage = React.createClass({
 						<label>Suspect/Target </label>
                         <div className = {nameCname}><input value = {disData.name} onChange = {this._onChangeValue.bind(null, "name")}/></div>
 					</li>
+                    <li>
+                        <label>Person In Charge</label>
+                        <div><input value = {disData.personInCharge} onChange = {this._onChangeValue.bind(null, "personInCharge")}/></div>
+                    </li>
+
 				    <li>
 						<label>Address</label>
 						<div><input value = {disData.location} onChange = {this._onChangeValue.bind(null, "location")}/></div>

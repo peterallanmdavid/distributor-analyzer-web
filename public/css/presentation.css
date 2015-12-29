@@ -110,8 +110,15 @@
   float: left;
   margin-left: 10px;
 }
+.view-distributor .info-card .deets .text-fields {
+  font-size: 12px;
+}
+.view-distributor .info-card .deets .in-charge {
+  font-weight: bold;
+}
 .view-distributor .info-card .deets .name {
   font-weight: bold;
+  font-size: 14px;
 }
 .view-distributor .clients-list {
   float: left;

@@ -17,6 +17,7 @@ var DistributorStore = Reflux.createStore({
         allDistributors:[],
         distributorForm: {
             name:"",
+            personInCharge:"",
             location:"",
             completedInvestigation:"",
             currentIntelligence:"",
@@ -67,6 +68,7 @@ var DistributorStore = Reflux.createStore({
     clearDistributorForm:function(){
         this.distributor.distributorForm= {
                 name:"",
+                personInCharge:"",
                 location:"",
                 completedInvestigation:"",
                 currentIntelligence:"",
@@ -114,6 +116,10 @@ var DistributorStore = Reflux.createStore({
 
     onSaveDistributorCompleted:function(data){
         var allDist = this.distributor.allDistributors;
+        var popUpAction = {
+            status:"success",
+            errorMessage:""
+        }
        if(typeof data.request.data.id!=="undefined"){
            for(var i=0; i<allDist.length;i++){
                if(allDist[i].id.toString()===data.response.data.id.toString()){
@@ -121,18 +127,22 @@ var DistributorStore = Reflux.createStore({
                    break;
                }
            }
-           this.trigger({data: this.distributor})
+           this.trigger({data: this.distributor, popUpAction:{popUpAction}})
            window.location = "#/home/distributor/d/" + data.request.data.id;
        }else{
 
            allDist.push(data.response.data);
-           this.trigger({data: this.distributor});
+           this.trigger({data: this.distributor, popUpAction:{popUpAction}})
            window.location = "#/home/distributor";
        }
 
     },
     onSaveDistributorFailed:function(data){
-
+        var popUpAction = {
+            status:"fail",
+            errorMessage:"Something went wrong while saving, please try again"
+        }
+        this.trigger({data: this.distributor, popUpAction:{popUpAction}})
     },
     onSetDistributorForm:function(name, value){
         this.distributor.distributorForm[name]=value;

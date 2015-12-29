@@ -44,6 +44,7 @@ var Presentation = React.createClass({
 				  <div className = "table-row table-header">
                     <div className = "table-col">Actions</div>
 				    <div className = "table-col">Suspect / Target</div>
+                    <div className = "table-col">Person In Charge</div>
 				    <div className = "table-col">Location</div>
                     <div className = "table-col">Vehicles</div>
 				    <div className = "table-col">Supplier</div>

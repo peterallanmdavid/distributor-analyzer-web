@@ -27,7 +27,9 @@ var DistributorDetails = React.createClass({
                     </div>
                     <div className = "deets">
                         <div className = "text-fields name">{d.name}</div>
+                        <div className = "text-fields in-charge">{d.personInCharge}</div>
                         <div className = "text-fields">{d.location}</div>
+
                     </div>
                     <div className = "menu-buttons">
                         <GenericButtons

@@ -55,8 +55,10 @@ var HomeComponent = React.createClass({
                 that.setState({useLoader:false, bodyText:popUpAction.popUpAction.errorMessage});
                 break;
             case "successFetchLinks":
-                var body = <Links links = {that.state.distributorData.vehicleLinks} closeModal ={that._closeModal} />
-                that.setState({useLoader:false, bodyText:body})
+                if(this.state.isViewPopUp){
+                    var body = <Links links = {that.state.distributorData.vehicleLinks} closeModal ={that._closeModal} />
+                    that.setState({useLoader:false, bodyText:body})
+                }
                 break;
         }
 
@@ -68,6 +70,17 @@ var HomeComponent = React.createClass({
                 DistributorAction.setDistributorForm(name,value);
             },
             saveData:function(){
+                that.setState({
+                    isViewPopUp:false,
+                    showModal: true,
+                    useLoader: true,
+                    loaderText:  "Saving New Suspect",
+                    confirmMethod: function(){},
+                    confirmParams: {},
+                    bodyText:"New suspect successfully added",
+                    title:'Save new suspect'
+
+                })
                 DistributorAction.saveDistributor();
             },
             addVehicle:function(data){
@@ -107,7 +120,6 @@ var HomeComponent = React.createClass({
                 DistributorAction.fetchLinks();
             },
             viewLinks: function(){
-                DistributorAction.fetchLinks();
                 var body = <Links links = {that.state.distributorData.vehicleLinks} closeModal = {that._closeModal}/>
                 that.setState({
                     showModal: true,
@@ -116,9 +128,11 @@ var HomeComponent = React.createClass({
                     confirmMethod: function(){},
                     confirmParams: {},
                     bodyText:{body},
-                    title:'Links'
+                    title:'Links',
+                    isViewPopUp: true
 
                 })
+                DistributorAction.fetchLinks();
             },
             viewPopUp: function(body, headerText){
                 that.setState({
