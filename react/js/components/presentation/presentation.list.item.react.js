@@ -4,6 +4,7 @@ var React = require('react')
     , SourcesList = require('../manage/sources/manage.sources.list.react')
     , ClientList = require('../manage/clients/manage.clients.list.react')
     , VehicleList = require('../manage/vehicle/manage.vehicle.list.react')
+    , LinkList = require('../links/links.list.react.js')
     , ActionButtons = require('./presentation.list.actions.react')
     , classnames = require('classnames')
     ;
@@ -11,7 +12,8 @@ var React = require('react')
 var PresentationListItem = React.createClass({
     propTypes:{
         presentationDataItem: React.PropTypes.object,
-        distActions:React.PropTypes.object
+        distActions:React.PropTypes.object,
+        vehicleLinks: React.PropTypes.array
     },
     getInitialState:function(){
         return({
@@ -26,73 +28,45 @@ var PresentationListItem = React.createClass({
         })
     },
     _viewSourcesDetails:function(){
-        console.log("opening")
         var body = <SourcesList
             sources = {this.props.presentationDataItem.sources}
             distActions = {this.props.distActions}
             isForm = {false}
         />
-        this.setState({
-            showModal: true,
-            confirmMethod: function(){},
-            confirmParams: {},
-            bodyText:{body},
-            title:''
-
-        })
+        var headerText = "Supplier Details"
+        this.props.distActions.viewPopUp(body, headerText);
     },
     _viewClientDetails:function(){
-        console.log("opening")
         var body = <ClientList
             clients = {this.props.presentationDataItem.clients}
             distActions = {this.props.distActions}
             isForm = {false}
         />
-        this.setState({
-            showModal: true,
-            confirmMethod: function(){},
-            confirmParams: {},
-            bodyText:{body},
-            title:''
-
-        })
+        var headerText = "Suspect's Customer Details"
+        this.props.distActions.viewPopUp(body, headerText);
     },
     _viewVehiclesDetails:function(){
-        console.log("opening")
         var body = <VehicleList
             vehicles = {this.props.presentationDataItem.vehicles}
             distActions = {this.props.distActions}
             isForm = {false}
         />
-        this.setState({
-            showModal: true,
-            confirmMethod: function(){},
-            confirmParams: {},
-            bodyText:{body},
-            title:''
-
-        })
-    },
-    _closeModal:function(){
-        this.setState({showModal:false})
+        var headerText = "Vehicle Details"
+        this.props.distActions.viewPopUp(body, headerText);
     },
 
-    _readMore:function(text,title){
-        this.setState({
-            showModal: true,
-            confirmMethod: function(){},
-            confirmParams: {},
-            bodyText:text,
-            title:title
-
-        })
+    _readMore:function(body,headerText){
+        this.props.distActions.viewPopUp(body, headerText);
+    },
+    _viewLinks:function(){
+       this.props.distActions.viewLinks(this.props.presentationDataItem.id);
     },
     render: function () {
         var d = this.props.presentationDataItem;
-        var ciClass = classnames("readmore-btn pointer", {"hidden": (typeof d.completedInvestigation==="undefined" || d.completedInvestigation==="")});
-        var currIClass = classnames("readmore-btn pointer", {"hidden":  (typeof d.currentIntelligence==="undefined" || d.currentIntelligence==="")});
-        var plClass = classnames("readmore-btn pointer", {"hidden": (typeof d.pendingLeads==="undefined" || d.pendingLeads==="")});
-        var tlCLass = classnames("readmore-btn pointer", {"hidden": (typeof d.taskingLeads==="undefined" || d.taskingLeads==="")});
+        var ciClass = classnames("readmore-btn pointer", {"hidden": (typeof d.completedInvestigation==="undefined" || d.completedInvestigation==="" || d.completedInvestigation===null)});
+        var currIClass = classnames("readmore-btn pointer", {"hidden":  (typeof d.currentIntelligence==="undefined" || d.currentIntelligence===""|| d.currentIntelligence===null)});
+        var plClass = classnames("readmore-btn pointer", {"hidden": (typeof d.pendingLeads==="undefined" || d.pendingLeads==="" || d.pendingLeads===null)});
+        var tlCLass = classnames("readmore-btn pointer", {"hidden": (typeof d.taskingLeads==="undefined" || d.taskingLeads==="" || d.taskingLeads===null)});
 
 
         var vehicles = d.vehicles.length>0?<GenericButton buttonText ="VIEW DETAILS" onClickHandler = {this._viewVehiclesDetails}/>:<span></span>;
@@ -102,7 +76,7 @@ var PresentationListItem = React.createClass({
         return (
 
                 <div className = "table-row">
-                    <div className = "table-col"><ActionButtons id = {d.id.toString()}/></div>
+                    <div className = "table-col"><ActionButtons id = {d.id.toString()} viewLinks = {this._viewLinks}/></div>
                     <div className = "table-col">{d.name}</div>
                     <div className = "table-col">{d.location}</div>
                     <div className = "table-col with-details" >{d.vehicles.length} {vehicles} </div>
@@ -123,20 +97,6 @@ var PresentationListItem = React.createClass({
                     <div className = "table-col long-text end">
                         <span className = "ellipsis">{d.taskingLeads}</span>
                         <span className = {tlCLass} onClick = {this._readMore.bind(null, d.taskingLeads, "Tasking Leads")}>READ MORE</span>
-                    </div>
-                    <div>
-                        <Modal
-                            showModal={this.state.showModal}
-                            closeModal={this._closeModal}
-                            confirmMethod={this.state.confirmMethod}
-                            confirmParams={this.state.confirmParams}
-                            title={this.state.title}
-                            body={this.state.bodyText}
-                            isSuccessPopUp = {this.state.isSuccessPopUp}
-                            useLoader={this.state.useLoader}
-                            loaderText={this.state.loaderText}
-                            handleOnEnter = {false}
-                        />
                     </div>
                 </div>
 

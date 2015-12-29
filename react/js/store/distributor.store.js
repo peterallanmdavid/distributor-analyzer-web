@@ -37,17 +37,14 @@ var DistributorStore = Reflux.createStore({
             {id: 3, name:"Retail Outlet"}
 
         ],
+        vehicleLinks:[],
         currentPage:""
     },
     setRoute: function(data){
         this.currentPage = data.route.name;
         if(data.route && data.route.params && data.route.params.distributorId){
-            //temporary way to get current distribtor while API is out
-/*            var allDist = this.distributor.allDistributors;
-            var currentDistributor = _.find(allDist, function(d){
-                return(d.id.toString()===data.route.params.distributorId.toString())
-            })*/
             DistAction.getCurrentDistributor(data.route.params.distributorId);
+            DistAction.fetchLinks(data.route.params.distributorId);
         }
         switch (data.route.name){
             case "createdistributor":
@@ -96,6 +93,10 @@ var DistributorStore = Reflux.createStore({
             }
         })
     },
+    getVehicleLinks: function(){
+        return this.distributor.vehicleLinks;
+    },
+
 
 
 
@@ -120,12 +121,12 @@ var DistributorStore = Reflux.createStore({
                    break;
                }
            }
-           this.trigger(this.distributor)
+           this.trigger({data: this.distributor})
            window.location = "#/home/distributor/d/" + data.request.data.id;
        }else{
 
            allDist.push(data.response.data);
-           this.trigger(this.distributor);
+           this.trigger({data: this.distributor});
            window.location = "#/home/distributor";
        }
 
@@ -135,7 +136,7 @@ var DistributorStore = Reflux.createStore({
     },
     onSetDistributorForm:function(name, value){
         this.distributor.distributorForm[name]=value;
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onAddSource: function(data){
         var that = this;
@@ -151,7 +152,7 @@ var DistributorStore = Reflux.createStore({
             data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.sources);
             this.distributor.distributorForm.sources.push(data);
         }
-        this.trigger(this.distributor)
+        this.trigger({data: this.distributor})
     },
     onAddClient:function(data){
         var that = this;
@@ -168,7 +169,7 @@ var DistributorStore = Reflux.createStore({
             this.distributor.distributorForm.clients.push(data);
         }
 
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onAddVehicle:function(data){
         var that = this;
@@ -184,25 +185,25 @@ var DistributorStore = Reflux.createStore({
             data.tempId = CommonUtils.getCurrentId(this.distributor.distributorForm.vehicles);
             this.distributor.distributorForm.vehicles.push(data);
         }
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onRemoveSource: function(id){
         _.remove(this.distributor.distributorForm.sources, function(d){
                 return d.tempId.toString()===id.toString();
         })
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onRemoveClient: function(id){
         _.remove(this.distributor.distributorForm.clients, function(d){
             return d.tempId.toString()===id.toString();
         })
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onRemoveVehicle:function(id){
         _.remove(this.distributor.distributorForm.vehicles, function(d){
             return d.tempId.toString()===id.toString();
         })
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onRemoveTestSamples: function(clientId, id){
         var client = _.find(this.distributor.distributorForm.clients, function(d){
@@ -219,7 +220,7 @@ var DistributorStore = Reflux.createStore({
             return d.tempId.toString()===id.toString()
         })
         existingObject.isEdit = value;
-        this.trigger(this.distributor)
+        this.trigger({data: this.distributor})
     },
 
     onEditVehicle:function(id, value){
@@ -235,7 +236,7 @@ var DistributorStore = Reflux.createStore({
             return d.tempId.toString()===id.toString()
         })
         existingObject.isEdit = value;
-        this.trigger(this.distributor)
+        this.trigger({data: this.distributor})
     },
 
 
@@ -245,7 +246,7 @@ var DistributorStore = Reflux.createStore({
     onFetchAllDistributorsCompleted:function(data){
         var results = data.response.data;
         this.distributor.allDistributors = results;
-        this.trigger(this.distributor);
+        this.trigger({data: this.distributor});
     },
     onFetchAllDistributorsFailed:function(data){
         console.log("Failed Fetching From API for all distributors")
@@ -265,10 +266,28 @@ var DistributorStore = Reflux.createStore({
         }
 
         this.distributor.currentDistributor =_.clone(results);
-        this.trigger(this.distributor)
+        this.trigger({data: this.distributor})
     },
     onGetCurrentDistributorFailed:function(data){
         console.log("Failed Fetching From API for currend distributor")
+    },
+    onFetchLinks: function(id){
+        WebUtils.fetchVehicleLinks(id, DistAction.fetchLinks.completed, DistAction.fetchLinks.failed);
+    },
+    onFetchLinksCompleted: function(data){
+        this.distributor.vehicleLinks = data.response.data;
+        var popUpAction = {
+            status:"successFetchLinks",
+            errorMessage:""
+        }
+        this.trigger({data: this.distributor, popUpAction:{popUpAction}})
+    },
+    onFetchLinksFailed: function(data){
+        var popUpAction = {
+            status:"fail",
+            errorMessage:"Failed to fetch links, please try again"
+        }
+        this.trigger({data: this.distributor, popUpAction:{popUpAction}})
     }
 
 });

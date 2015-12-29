@@ -9,7 +9,8 @@ module.exports = {
         distributor: ApiBaseUrl +"distributor",
         source: ApiBaseUrl + "source",
         client: ApiBaseUrl + "client",
-        vehicle: ApiBaseUrl + "vehicle"
+        vehicle: ApiBaseUrl + "vehicle",
+        links: ApiBaseUrl + "links"
     },
     objToQueryStr: function(obj){
         var str = [];
@@ -76,6 +77,21 @@ module.exports = {
     getCurrentDistributor:function(id, successCallBack,errorCallBack){
         var url = this.url.distributor + "/" + id;
         this.getData({}, url, successCallBack, errorCallBack);
+    },
+    fetchVehicleLinks: function(id, successCallBack,errorCallBack){
+        var url = this.url.links + "/vehicle" + id;
+        //this.getData({}, url, successCallBack, errorCallBack);
+        var data = {
+            response:{
+                data:[
+                    {linkType:"Vehicle",distributorId:1, distributorName: "Philip Morris", vehicleId:1, plateNumber:"TDE269" },
+                    {linkType:"Vehicle",distributorId:2, distributorName: "Figaro", vehicleId:2, plateNumber:"PES456" },
+                    {linkType:"Vehicle",distributorId:3, distributorName: "Fortune", vehicleId:3, plateNumber:"SPE598" },
+                    {linkType:"Vehicle",distributorId:4, distributorName: "Salem", vehicleId:4, plateNumber:"REE444" }
+                ]
+            }
+        }
+        successCallBack(data);
     }
 
 }

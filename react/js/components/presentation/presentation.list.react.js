@@ -11,9 +11,10 @@ var PresentationList  = React.createClass({
     render: function () {
         var presData = this.props.presentationData;
         var presentationItem= [];
+        var that = this
         _.forEach(presData, function(d){
             presentationItem.push(
-                <PresentationListItem presentationDataItem = {d} distActions = {this.props.distActions}/>
+                <PresentationListItem presentationDataItem = {d} distActions = {that.props.distActions} vehicleLinks = {that.props.vehicleLinks}/>
                )
         })
         return (

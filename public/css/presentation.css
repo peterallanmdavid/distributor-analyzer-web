@@ -128,3 +128,22 @@
   float: left;
   width: 100%;
 }
+.links-list {
+  margin-top: 5px;
+}
+.links-list .link-item {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  width: 100%;
+  float: left;
+}
+.links-list .link-item .link-field {
+  float: left;
+  width: 33%;
+}
+.links-list .header {
+  border: 1px solid #ccc;
+  font-weight: bold;
+  background-color: #F5F5F5;
+}

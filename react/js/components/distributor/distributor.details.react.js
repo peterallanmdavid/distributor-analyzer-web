@@ -3,11 +3,13 @@ var React = require('react')
     , SourceList = require('../manage/sources/manage.sources.list.react')
     , VehicleList = require('../manage/vehicle/manage.vehicle.list.react')
     , GenericButtons = require('../common/generic.button.react')
+    , Links = require('../links/links.list.react')
     ;
 
 var DistributorDetails = React.createClass({
     propTypes:{
-        currentDistributor: React.PropTypes.React
+        currentDistributor: React.PropTypes.React,
+        vehicleLinks: React.PropTypes.array
     },
     render: function () {
         var d = this.props.currentDistributor;
@@ -71,6 +73,11 @@ var DistributorDetails = React.createClass({
                         clients = {d.clients}
                     />
 
+                </div>
+
+                <div className = "row-field">
+                    <div className = "text-label-header">Links</div>
+                    <Links links = {this.props.vehicleLinks}/>
                 </div>
 
                 <div className = "row-field long-fields">

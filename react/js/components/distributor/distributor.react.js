@@ -4,6 +4,7 @@ var React = require('react')
     , Navigation = Router.Navigation
     , RouteHandler = Router.RouteHandler
     , DistributorAction = require('../../action/distributor.action')
+    , Modal = require('../common/generic.modal.react')
     , SideMenu = require('../sidemenu/side.menu.react')
     , classnames = require('classnames')
     ;
@@ -13,55 +14,14 @@ var React = require('react')
 var Distributor= React.createClass({
     propTypes: {
         distributorData: React.PropTypes.object,
-        routeData: React.PropTypes.object
+        routeData: React.PropTypes.object,
+        distActions: React.PropTypes.object
     },
-    _distributorActions:function(){
-        var that = this
-        var functions = {
-            setDistributorForm:function(name, value){
-                DistributorAction.setDistributorForm(name,value);
-            },
-            saveData:function(){
-                DistributorAction.saveDistributor();
-            },
-            addVehicle:function(data){
-                DistributorAction.addVehicle(data);
-            },
-            addSource:function(data){
-                DistributorAction.addSource(data);
-            },
-            addClient:function(data){
-                DistributorAction.addClient(data);
-            },
-            removeVehicle:function(data){
-                DistributorAction.removeVehicle(data);
-            },
-            removeSource:function(id){
-                DistributorAction.removeSource(id);
-            },
-            removeClient:function(id){
-                DistributorAction.removeClient(id);
-            },
-            removeTestSamples:function(id){
-                DistributorAction.removeTestSamples(id);
-            },
-            editSource: function(id,value){
-                DistributorAction.editSource(id,value)
-            },
-            editVehicle: function(id,value){
-                DistributorAction.editVehicle(id,value)
-            },
-            editClient: function(id,value){
-                DistributorAction.editClient(id,value)
-            },
-            getCurrentDistributor:function(){
-                DistributorAction.getCurrentDistributor();
-            }
-        }
-        return functions;
+    componentDidMount: function(){
+        this.props.distActions.fetchLinks();
     },
     render: function () {
-        var distActions = this._distributorActions();
+        var distActions = this.props.distActions;
         var disData = this.props.distributorData;
         var sideMenu = <SideMenu allDist = {disData.allDistributors} />
         var  withSideMenu = (this.props.routeData.route.name!=="flowchart")
@@ -79,6 +39,7 @@ var Distributor= React.createClass({
                         sourceTypes = {disData.sourceTypes}
                         distributorForm = {disData.distributorForm}
                         distActions = {distActions}
+                        vehicleLinks = {disData.vehicleLinks}
                     />
                 </div>
             </div>
