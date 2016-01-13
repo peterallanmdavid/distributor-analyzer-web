@@ -116,10 +116,10 @@ var HomeComponent = React.createClass({
             getCurrentDistributor:function(){
                 DistributorAction.getCurrentDistributor();
             },
-            fetchLinks:function(){
-                DistributorAction.fetchLinks();
+            fetchLinks:function(id){
+                DistributorAction.fetchLinks(id);
             },
-            viewLinks: function(){
+            viewLinks: function(id){
                 var body = <Links links = {that.state.distributorData.vehicleLinks} closeModal = {that._closeModal}/>
                 that.setState({
                     showModal: true,
@@ -132,7 +132,7 @@ var HomeComponent = React.createClass({
                     isViewPopUp: true
 
                 })
-                DistributorAction.fetchLinks();
+                DistributorAction.fetchLinks(id);
             },
             viewPopUp: function(body, headerText){
                 that.setState({

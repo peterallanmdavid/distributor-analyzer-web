@@ -22,7 +22,7 @@ var LinksItem = React.createClass({
 
         return (
             <div className = "link-item">
-                <div className ="link-field">{vl.linkType}</div>
+                <div className ="link-field">{vl.type}</div>
                 <div className ="link-field pointer hover-underline" onClick = {this._viewDistributor}>{vl.distributorName}</div>
                 <div className ="link-field">{vl.plateNumber}</div>
             </div>

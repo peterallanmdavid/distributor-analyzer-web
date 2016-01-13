@@ -79,9 +79,9 @@ module.exports = {
         this.getData({}, url, successCallBack, errorCallBack);
     },
     fetchVehicleLinks: function(id, successCallBack,errorCallBack){
-        var url = this.url.links + "/vehicle" + id;
-        //this.getData({}, url, successCallBack, errorCallBack);
-        var data = {
+        var url = this.url.distributor + "/" + id+ "/link";
+        this.getData({}, url, successCallBack, errorCallBack);
+        /*var data = {
             response:{
                 data:[
                     {linkType:"Vehicle",distributorId:1, distributorName: "Philip Morris", vehicleId:1, plateNumber:"TDE269" },
@@ -91,7 +91,7 @@ module.exports = {
                 ]
             }
         }
-        successCallBack(data);
+        successCallBack(data);*/
     }
 
 }

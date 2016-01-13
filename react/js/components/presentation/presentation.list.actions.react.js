@@ -8,7 +8,7 @@ var PresentationActionList= React.createClass({
         viewLinks: React.PropTypes.func
     },
     _viewLinks:function(){
-        this.props.viewLinks();
+        this.props.viewLinks(this.props.id);
     },
 
     render: function () {

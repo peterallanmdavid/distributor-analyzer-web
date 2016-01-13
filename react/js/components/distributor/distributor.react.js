@@ -17,9 +17,9 @@ var Distributor= React.createClass({
         routeData: React.PropTypes.object,
         distActions: React.PropTypes.object
     },
-    componentDidMount: function(){
+/*    componentDidMount: function(){
         this.props.distActions.fetchLinks();
-    },
+    },*/
     render: function () {
         var distActions = this.props.distActions;
         var disData = this.props.distributorData;

@@ -58,8 +58,8 @@ var PresentationListItem = React.createClass({
     _readMore:function(body,headerText){
         this.props.distActions.viewPopUp(body, headerText);
     },
-    _viewLinks:function(){
-       this.props.distActions.viewLinks(this.props.presentationDataItem.id);
+    _viewLinks:function(id){
+       this.props.distActions.viewLinks(id);
     },
     render: function () {
         var d = this.props.presentationDataItem;
