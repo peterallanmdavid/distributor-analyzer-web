@@ -80,13 +80,16 @@
 .source-type select {
   height: 26px;
 }
+.source-item-header {
+  border: 1px solid #ccc !important;
+  float: left;
+  width: 100%;
+}
 .source-item {
+  border-top: 0 !important;
   float: left;
   width: 100%;
   position: relative;
-}
-.source-item .header {
-  width: 100%;
 }
 .source-item .edit-button {
   position: absolute;

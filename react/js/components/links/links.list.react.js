@@ -17,7 +17,7 @@ var VehicleLinks = React.createClass({
     },
     render: function () {
         var linkList = [];
-        var links = this.props.links;
+        var links = this.props.links.mainLink;
         var that = this;
         if(links.length>0){
             _.forEach(links, function(d, key){

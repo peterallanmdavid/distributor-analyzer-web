@@ -39,7 +39,7 @@ var Distributor= React.createClass({
                         sourceTypes = {disData.sourceTypes}
                         distributorForm = {disData.distributorForm}
                         distActions = {distActions}
-                        vehicleLinks = {disData.vehicleLinks}
+                        links = {disData.links}
                     />
                 </div>
             </div>

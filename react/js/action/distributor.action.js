@@ -20,7 +20,8 @@ var DistributorAction = Reflux.createActions({
     'removeVehicle':{},
     'removeTestSamples':{},
     'fetchAllDistributors':{asyncResult: true},
-    'fetchLinks':{asyncResult: true}
+    'fetchLinks':{asyncResult: true},
+    'fetchBranchLinks':{asyncResult: true}
 
 });
 module.exports = DistributorAction;

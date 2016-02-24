@@ -46,8 +46,8 @@ var VehicleList = React.createClass({
         }
         return(
             <div>
-                <div className = "source-item card vehicle-list">
-                    <div className = "si-row header">
+                <div className = "source-item-header card vehicle-list">
+                    <div className = "si-row ">
                         <div className = "si-field"><label>Model</label></div>
                         <div className = "si-field"><label>Plate Number</label></div>
                         <div className = "si-field"><label>Owner</label></div>

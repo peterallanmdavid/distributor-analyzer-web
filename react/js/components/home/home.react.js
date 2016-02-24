@@ -119,8 +119,11 @@ var HomeComponent = React.createClass({
             fetchLinks:function(id){
                 DistributorAction.fetchLinks(id);
             },
+            fetchBranchLinks:function(id){
+                DistributorAction.fetchBranchLinks(id);
+            },
             viewLinks: function(id){
-                var body = <Links links = {that.state.distributorData.vehicleLinks} closeModal = {that._closeModal}/>
+                var body = <Links links = {that.state.distributorData.links} closeModal = {that._closeModal}/>
                 that.setState({
                     showModal: true,
                     useLoader: true,

@@ -38,6 +38,10 @@ var DistributorStore = Reflux.createStore({
             {id: 3, name:"Retail Outlet"}
 
         ],
+        links:{
+            mainLink:[],
+            branchLink:[]
+        },
         vehicleLinks:[],
         currentPage:""
     },
@@ -45,11 +49,15 @@ var DistributorStore = Reflux.createStore({
         this.currentPage = data.route.name;
         if(data.route && data.route.params && data.route.params.distributorId){
             DistAction.getCurrentDistributor(data.route.params.distributorId);
-            DistAction.fetchLinks(data.route.params.distributorId);
         }
         switch (data.route.name){
             case "createdistributor":
                 this.clearDistributorForm()
+                break;
+            case "linkchart":
+                DistAction.fetchLinks(data.route.params.distributorId);
+                break;
+            default:
                 break;
         }
     },
@@ -285,7 +293,7 @@ var DistributorStore = Reflux.createStore({
         WebUtils.fetchVehicleLinks(id, DistAction.fetchLinks.completed, DistAction.fetchLinks.failed);
     },
     onFetchLinksCompleted: function(data){
-        this.distributor.vehicleLinks = data.response.data;
+        this.distributor.links.mainLink = data.response.data;
         var popUpAction = {
             status:"successFetchLinks",
             errorMessage:""
@@ -298,7 +306,16 @@ var DistributorStore = Reflux.createStore({
             errorMessage:"Failed to fetch links, please try again"
         }
         this.trigger({data: this.distributor, popUpAction:{popUpAction}})
-    }
+    },
+
+    onFetchBranchLinks:function(id){
+        WebUtils.fetchVehicleLinks(id, DistAction.fetchBranchLinks.completed, DistAction.fetchBranchLinks.failed);
+    },
+    onFetchBranchLinksCompleted:function(data){
+        this.distributor.links.branchLink = data.response.data;
+        this.trigger({data: this.distributor})
+    },
+    onFetchBranchLinksFailed:function(){}
 
 });
 

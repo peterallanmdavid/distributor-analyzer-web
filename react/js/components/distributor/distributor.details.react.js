@@ -9,16 +9,18 @@ var React = require('react')
 var DistributorDetails = React.createClass({
     propTypes:{
         currentDistributor: React.PropTypes.React,
-        vehicleLinks: React.PropTypes.array
+        links: React.PropTypes.object
     },
     render: function () {
         var d = this.props.currentDistributor;
         var editUrl = "#/home/distributor/d/"+d.id+"/edit";
         var editBUttonText = <div><i className="fa fa-pencil"></i>EDIT</div>
         var flowChart = "#/home/distributor/d/"+d.id+"/flowchart";
-        var home = "#home/distributor"
-        var flowChartText = <div><i className="fa fa-object-group"></i>VIEW FLOWCHART</div>
-        var homeBtnText = <div><i className="fa fa-home"></i>Home</div>
+        var home = "#home/distributor";
+        var linkChart ="#/home/distributor/d/"+d.id+"/linkchart";
+        var flowChartText = <div><i className="fa fa-object-group"></i>VIEW FLOWCHART</div>;
+        var homeBtnText = <div><i className="fa fa-home"></i>Home</div>;
+        var linkChartText = <div><i className="fa fa-sitemap"></i>LinkChart</div>;
         return (
             <div className = "view-distributor card">
                 <div className = "row-field info-card">
@@ -50,6 +52,12 @@ var DistributorDetails = React.createClass({
                             enableLink = {true}
                             buttonText = {flowChartText}
                         />
+                        <GenericButtons
+                            className  = "edit-button flow-chart"
+                            link = {linkChart}
+                            enableLink = {true}
+                            buttonText = {linkChartText}
+                        />
                     </div>
 
                 </div>
@@ -76,12 +84,6 @@ var DistributorDetails = React.createClass({
                     />
 
                 </div>
-
-                <div className = "row-field">
-                    <div className = "text-label-header">Links</div>
-                    <Links links = {this.props.vehicleLinks}/>
-                </div>
-
                 <div className = "row-field long-fields">
                     <div className = "text-label-header">Completed Investigations</div>
                     <div className = "text-fields">{d.completedInvestigation}</div>
